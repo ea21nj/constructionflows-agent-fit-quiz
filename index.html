@@ -826,25 +826,6 @@
 
     renderQuestion();
 
-    // Contact Modal Functions
-    function openContactModal() {
-      const modal = document.getElementById('contactModal');
-      const agentResult = getQuizResult(); // This function should exist in the quiz code
-
-      // Pre-fill agent field
-      const agentInput = modal.querySelector('input[name="agent"]');
-      if (agentInput && agentResult) {
-        agentInput.value = agentResult;
-      }
-
-      // Show modal
-      modal.classList.add('active');
-    }
-
-    function closeContactModal() {
-      const modal = document.getElementById('contactModal');
-      modal.classList.remove('active');
-    }
   </script>
 
 </body>
