@@ -443,6 +443,9 @@
     .field input:focus, .field select:focus, .field textarea:focus { background: var(--yellow); }
     .form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; align-items: center; }
     .form-note { color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.5; max-width: 560px; }
+    .form-status { flex-basis: 100%; color: var(--secondary); font-size: 13px; font-weight: 700; line-height: 1.5; }
+    .form-status.error { color: #8A1F11; }
+    .form-status.success { color: #1F6F35; }
     @media (max-width: 960px) { .simple-contact { grid-template-columns: 1fr; } .contact-note { border-right: 0; border-bottom: var(--line); } }
 
   </style>
@@ -487,11 +490,7 @@
             <h2>Lead form</h2>
             <p>Submissions go to <strong>hello@constructionflows.com</strong>.</p>
 
-            <form class="simple-form" id="leadForm" action="https://formsubmit.co/hello@constructionflows.com" method="POST">
-              <input type="hidden" name="_subject" value="New ConstructionFlows workflow review lead" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://constructionflows-agent-fit-quiz.vercel.app/thank-you.html" />
+            <form class="simple-form" id="leadForm">
               <input type="hidden" name="source" value="ConstructionFlows simplified contact page" />
 
               <div class="field">
@@ -534,7 +533,8 @@
             <div class="form-actions">
               <button class="btn btn-yellow" type="button" id="submitProxy">Send request</button>
               <a class="btn" href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20workflow%20review">Email instead</a>
-              <div class="form-note">First FormSubmit use may require a one-time email confirmation before lead delivery is fully active.</div>
+              <div class="form-note">Requests are sent through Resend directly to hello@constructionflows.com.</div>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
             </div>
           </div>
         </div>
@@ -547,13 +547,51 @@
   <script>
     const form = document.getElementById('leadForm');
     const quizResult = document.getElementById('quiz_result');
+    const submitButton = document.getElementById('submitProxy');
+    const formStatus = document.getElementById('formStatus');
+
     try {
       const primary = localStorage.getItem('constructionflowsAgentFitPrimary');
       const topThree = localStorage.getItem('constructionflowsAgentFitTopThree');
       if (primary && !quizResult.value) quizResult.value = topThree || primary;
     } catch (error) {}
-    document.getElementById('submitProxy').addEventListener('click', () => {
-      if (form.reportValidity()) form.submit();
+
+    function setStatus(message, type = '') {
+      formStatus.textContent = message;
+      formStatus.className = `form-status ${type}`.trim();
+    }
+
+    async function sendLeadRequest() {
+      if (!form.reportValidity()) return;
+
+      submitButton.disabled = true;
+      setStatus('Sending request…');
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Request failed');
+        }
+
+        setStatus('Request sent. Redirecting…', 'success');
+        window.location.href = 'thank-you.html';
+      } catch (error) {
+        setStatus('Sorry, the request could not be sent. Please use “Email instead” or try again in a moment.', 'error');
+        submitButton.disabled = false;
+      }
+    }
+
+    submitButton.addEventListener('click', sendLeadRequest);
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      sendLeadRequest();
     });
   </script>
 </body>
