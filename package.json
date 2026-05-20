@@ -2,7 +2,7 @@
   "name": "constructionflows-agent-fit-quiz",
   "version": "1.0.0",
   "private": false,
-  "description": "Interactive ConstructionFlows quiz to recommend the best construction AI agents to implement first.",
+  "description": "Interactive ConstructionFlows operational maturity assessment for construction sales workflows.",
   "scripts": {
     "start": "vite --host 0.0.0.0",
     "build": "vite build",

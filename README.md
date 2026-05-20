@@ -1,16 +1,5 @@
-# ConstructionFlows Agent Fit Quiz
+# ConstructionFlows Operational Maturity Assessment
 
-Interactive 20-question quiz that helps construction companies identify the best AI agents/workflows to implement first.
+Interactive construction sales workflow assessment that scores operational maturity across visibility, standardization, accountability, scalability, forecast reliability, operational readiness, knowledge retention, and customer experience.
 
-## Local development
-
-```bash
-npm install
-npm start
-```
-
-## Build
-
-```bash
-npm run build
-```
+Built with Vite and deployed on Vercel.

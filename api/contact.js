@@ -29,8 +29,8 @@ function buildEmailHtml(data) {
         ${field('Name', data.name)}
         ${field('Email', data.email)}
         ${field('Company', data.company)}
-        ${field('Agent interest', data.agent_interest)}
-        ${field('Quiz result', data.quiz_result)}
+        ${field('Workflow interest', data.agent_interest)}
+        ${field('Assessment result', data.quiz_result)}
         ${field('Message', data.message)}
         ${field('Source', data.source)}
       </table>
@@ -44,8 +44,8 @@ function buildText(data) {
     `Name: ${data.name || '—'}`,
     `Email: ${data.email || '—'}`,
     `Company: ${data.company || '—'}`,
-    `Agent interest: ${data.agent_interest || '—'}`,
-    `Quiz result: ${data.quiz_result || '—'}`,
+    `Workflow interest: ${data.agent_interest || '—'}`,
+    `Assessment result: ${data.quiz_result || '—'}`,
     `Source: ${data.source || '—'}`,
     '',
     'Message:',

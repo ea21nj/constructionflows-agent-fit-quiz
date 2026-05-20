@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConstructionFlows Agent Fit Quiz</title>
-  <meta name="description" content="A 20-question quiz that helps contractors identify which AI agents to implement first: estimating, PM, change orders, field reporting, billing, CRM, and document intake." />
-  <meta property="og:title" content="ConstructionFlows Agent Fit Quiz" />
-  <meta property="og:description" content="Find the best construction AI agent to implement first based on your workflows, bottlenecks, and team readiness." />
+  <title>ConstructionFlows Operational Maturity Assessment</title>
+  <meta name="description" content="A practical construction sales workflow assessment that scores visibility, standardization, accountability, forecasting, operational readiness, knowledge retention, scalability, and customer experience." />
+  <meta property="og:title" content="ConstructionFlows Operational Maturity Assessment" />
+  <meta property="og:description" content="Find where your construction sales workflow is leaking margin, follow-up, visibility, and handoff clarity." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,8 @@
       --warm: #F2F1ED;
       --secondary: #555555;
       --border: #E2E1DC;
+      --danger: #8A1F11;
+      --good: #1F6F35;
       --radius: 4px;
       --line: 2px solid var(--black);
       --body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -41,7 +43,7 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
+    button, input, textarea { font: inherit; }
 
     .nav {
       position: sticky;
@@ -138,15 +140,15 @@
       font-weight: 800;
     }
     h1 {
-      max-width: 980px;
+      max-width: 1060px;
       margin-top: 22px;
-      font-size: clamp(58px, 10vw, 116px);
+      font-size: clamp(54px, 9vw, 112px);
       line-height: .82;
       letter-spacing: -.035em;
       text-wrap: balance;
     }
     .hero-copy {
-      max-width: 780px;
+      max-width: 820px;
       margin: 28px 0 0;
       color: var(--secondary);
       font-size: clamp(17px, 2vw, 21px);
@@ -175,6 +177,25 @@
     .btn-yellow { background: var(--yellow); }
     .btn-dark { background: var(--black); color: var(--white); }
     .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .mini-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 18px;
+    }
+    .mini-proof span {
+      display: inline-flex;
+      align-items: center;
+      border: var(--line);
+      background: var(--white);
+      padding: 8px 10px;
+      margin: 0 -2px -2px 0;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
 
     .spec-grid {
       max-width: 1180px;
@@ -205,8 +226,6 @@
     section { padding: 74px 22px; border-bottom: var(--line); }
     section:nth-of-type(odd) { background: var(--warm); }
     section:nth-of-type(even) { background: var(--white); }
-    section.tab-only { display: none; }
-    section.tab-only.is-visible { display: block; }
     .section-inner { max-width: 1180px; margin: 0 auto; }
     h2 {
       margin-top: 16px;
@@ -216,7 +235,7 @@
       text-wrap: balance;
     }
     .section-copy {
-      max-width: 760px;
+      max-width: 780px;
       margin: 20px 0 0;
       color: var(--secondary);
       font-size: 18px;
@@ -229,13 +248,14 @@
       border: var(--line);
       background: var(--white);
       display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
+      grid-template-columns: 340px minmax(0, 1fr);
       gap: 0;
     }
     .progress-panel {
       border-right: var(--line);
       background: var(--warm);
       padding: 22px;
+      position: relative;
     }
     .progress-panel .headline { font-size: 34px; line-height: .9; letter-spacing: -.02em; }
     .progress-bar {
@@ -261,11 +281,25 @@
       letter-spacing: .04em;
     }
     .score-row:last-child { border-bottom: 0; }
+    .category-list { margin-top: 20px; display: grid; gap: 8px; }
+    .category-pill {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
 
     .question-panel { padding: clamp(22px, 4vw, 38px); }
     .question-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
     .number { border-radius: var(--radius); min-width: 54px; height: 34px; font-family: var(--headline); font-size: 24px; letter-spacing: 0; }
-    .question h3 { font-size: clamp(34px, 5vw, 58px); line-height: .9; letter-spacing: -.025em; max-width: 760px; }
+    .question h3 { font-size: clamp(34px, 5vw, 58px); line-height: .9; letter-spacing: -.025em; max-width: 780px; }
+    .question-context { color: var(--secondary); line-height: 1.55; font-weight: 500; margin: 14px 0 0; max-width: 760px; }
     .options {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -308,11 +342,35 @@
       font-weight: 800;
     }
     .option.selected .option-letter { background: var(--black); color: var(--white); }
-    .quiz-controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; }
+    .open-response {
+      width: 100%;
+      min-height: 140px;
+      margin-top: 28px;
+      border: var(--line);
+      border-radius: var(--radius);
+      background: var(--warm);
+      color: var(--black);
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      outline: none;
+      resize: vertical;
+    }
+    .open-response:focus { background: var(--yellow); }
+    .quiz-controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
 
     .results { display: none; margin-top: 38px; }
     .results.show { display: block; }
-    .result-grid {
+    .result-hero {
+      border: var(--line);
+      background: var(--yellow);
+      padding: clamp(22px, 4vw, 36px);
+      margin-top: 24px;
+    }
+    .result-hero h3 { font-size: clamp(44px, 7vw, 86px); line-height: .82; letter-spacing: -.03em; margin-top: 14px; }
+    .result-hero p { max-width: 860px; line-height: 1.6; font-weight: 600; }
+    .result-grid, .maturity-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
@@ -320,22 +378,17 @@
       background: var(--black);
       margin-top: 24px;
     }
-    .result-card {
+    .result-card, .maturity-card {
       background: var(--white);
       padding: 24px;
       border-right: var(--line);
       border-bottom: var(--line);
     }
-    .result-card:nth-child(2n) { border-right: 0; }
-    .result-card h3 { font-size: 42px; line-height: .9; letter-spacing: -.025em; margin-top: 14px; }
-    .result-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
-    .result-card ul { color: var(--secondary); line-height: 1.65; font-weight: 500; padding-left: 18px; }
-    .primary-result { background: var(--yellow); grid-column: 1 / -1; }
-    .primary-result p, .primary-result ul { color: var(--black); }
-    .result-rank { border-radius: var(--radius); }
+    .result-card:nth-child(2n), .maturity-card:nth-child(2n) { border-right: 0; }
+    .result-card h3, .maturity-card h3 { font-size: 38px; line-height: .9; letter-spacing: -.025em; margin-top: 12px; }
+    .result-card p, .result-card li, .maturity-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
     .score-meter { height: 16px; border: var(--line); background: var(--white); margin: 18px 0 10px; }
     .score-meter span { display: block; height: 100%; width: 0%; background: var(--black); }
-    .primary-result .score-meter span { background: var(--white); }
     .recommendation {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -349,90 +402,31 @@
     .rec-card h3 { font-size: 30px; line-height: .95; margin: 10px 0; }
     .rec-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
 
-    .agent-library {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-      border: var(--line);
-      background: var(--black);
-      margin-top: 36px;
-    }
-    .agent-card { background: var(--white); padding: 22px; border-right: var(--line); border-bottom: var(--line); }
-    .agent-card:nth-child(3n) { border-right: 0; }
-    .agent-card h3 { font-size: 32px; line-height: .9; margin: 12px 0 10px; }
-    .agent-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
-
     .footer { background: var(--black); color: var(--white); padding: 28px 22px; }
     .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 
-
-    .cta-panel {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0;
-      border: var(--line);
-      background: var(--black);
-    }
-    .cta-copy, .cta-action {
-      background: var(--yellow);
-      padding: 22px;
-    }
-    .cta-copy { border-right: var(--line); }
-    .cta-copy:only-child { border-right: 0; }
-    .cta-copy strong {
-      display: block;
-      font-family: var(--headline);
-      font-size: clamp(36px, 5vw, 58px);
-      line-height: .86;
-      letter-spacing: -.03em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .cta-copy span { color: var(--black); font-weight: 600; line-height: 1.55; }
-    .cta-action { display: flex; align-items: center; justify-content: center; min-width: 260px; }
-    .mini-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-      margin-top: 18px;
-    }
-    .mini-proof span {
-      display: inline-flex;
-      align-items: center;
-      border: var(--line);
-      background: var(--white);
-      padding: 8px 10px;
-      margin: 0 -2px -2px 0;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
     @media (max-width: 960px) {
       .nav-links { display: none; }
-      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library, .cta-panel { grid-template-columns: 1fr; }
-      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card, .cta-copy { border-right: 0; border-bottom: var(--line); }
-      .spec-card:last-child, .rec-card:last-child, .agent-card:last-child { border-bottom: 0; }
+      .spec-grid, .quiz-shell, .result-grid, .maturity-grid, .recommendation { grid-template-columns: 1fr; }
+      .spec-card, .progress-panel, .result-card, .maturity-card, .rec-card { border-right: 0; border-bottom: var(--line); }
+      .spec-card:last-child, .rec-card:last-child { border-bottom: 0; }
       .options { grid-template-columns: 1fr; }
       .option { border-right: 0; }
       .option:nth-last-child(-n+2) { border-bottom: var(--line); }
       .option:last-child { border-bottom: 0; }
-      .result-card:nth-child(2n), .agent-card:nth-child(3n) { border-right: 0; }
-      h1 { font-size: clamp(54px, 18vw, 88px); }
+      .result-card:nth-child(2n), .maturity-card:nth-child(2n) { border-right: 0; }
+      h1 { font-size: clamp(52px, 17vw, 88px); }
       section { padding: 58px 20px; }
     }
-
-</style>
+  </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-inner">
       <a class="brand" href="#top"><span class="logo">CF</span><span>ConstructionFlows</span></a>
       <div class="nav-links">
-        <a href="#quiz">Take quiz</a>
-        <a href="#agents">Agent types</a>
+        <a href="#assessment">Take assessment</a>
+        <a href="#results">Results</a>
         <a href="contact.html">Contact us</a>
       </div>
     </div>
@@ -441,55 +435,50 @@
   <main id="top">
     <header class="hero">
       <div class="hero-inner">
-        <div class="badge">20-question implementation diagnostic</div>
-        <h1>Stop guessing where AI fits in your construction business.</h1>
-        <p class="hero-copy">In about three minutes, answer practical questions about bids, RFIs, change orders, field reports, billing, documents, and follow-up — then get a ranked recommendation for the first agent your team should actually implement.</p>
+        <div class="badge">Operational maturity assessment</div>
+        <h1>Stop guessing where your sales workflow breaks.</h1>
+        <p class="hero-copy">Answer practical questions about lead source visibility, estimating, ownership, forecasting, customer decisions, operational handoff, and process consistency. Get a maturity profile and a ranked view of what to fix first.</p>
         <div class="hero-actions">
-          <a class="btn btn-yellow" href="#quiz">Find my first agent →</a>
-          <a class="btn" href="contact.html">Do a free workflow audit</a>
+          <a class="btn btn-yellow" href="#assessment">Start assessment →</a>
+          <a class="btn" href="contact.html">Request workflow review</a>
         </div>
-        <div class="mini-proof" aria-label="Quiz proof points">
-          <span>3 minute diagnostic</span>
-          <span>9 agent paths</span>
-          <span>Human approval first</span>
-          <span>Built for contractors</span>
-        </div>
-        <div class="cta-panel">
-          <div class="cta-copy">
-            <strong>Your result becomes a rollout plan.</strong>
-            <span>Not a generic score. You’ll see the agent to start with, why it fits, and the first workflow to test with your team.</span>
-          </div>
+        <div class="mini-proof" aria-label="Assessment proof points">
+          <span>Sales workflow lens</span>
+          <span>Construction-ready</span>
+          <span>8 maturity categories</span>
+          <span>No generic CRM score</span>
         </div>
         <div class="spec-grid">
           <div class="spec-card">
-            <div class="spec-title">Built like a jobsite workflow review.</div>
-            <p>No generic AI hype. The quiz maps real construction bottlenecks to implementable agents: estimator copilot, PM second brain, change order evidence, RFI/submittal tracking, field reporting, schedule risk, CRM follow-up, billing, and document intake.</p>
+            <div class="spec-title">This is not CRM discovery.</div>
+            <p>It is an operational maturity assessment through the lens of your sales workflow. The goal is to surface the friction that turns into missed follow-up, proposal delays, weak handoffs, forecast misses, customer confusion, and margin leakage.</p>
           </div>
           <div class="spec-card">
-            <div class="spec-title">You leave with</div>
+            <div class="spec-title">You will see</div>
             <ul>
-              <li>Primary agent recommendation</li>
-              <li>Secondary implementation options</li>
-              <li>Best first workflow</li>
-              <li>Human-review-first rollout path</li>
+              <li>Your maturity profile</li>
+              <li>Strongest and weakest categories</li>
+              <li>Hidden dependency risks</li>
+              <li>First three workflow fixes to prioritize</li>
             </ul>
           </div>
         </div>
       </div>
     </header>
 
-    <section id="quiz">
+    <section id="assessment">
       <div class="section-inner">
-        <div class="section-kicker">Agent fit quiz</div>
-        <h2>Score the workflows that are costing your team the most time.</h2>
-        <p class="section-copy">Choose the answer that best reflects your current operation. Your results update as you go, but the final recommendation appears after all 20 questions.</p>
+        <div class="section-kicker">Interactive assessment</div>
+        <h2>Score the workflows that decide whether revenue turns into clean execution.</h2>
+        <p class="section-copy">Choose the answer that best reflects how the business works today. Open-response questions are captured in your result summary so you can use them in a workflow review.</p>
 
         <div class="quiz-shell" id="quizShell">
           <aside class="progress-panel">
-            <div class="headline">Diagnostic Progress</div>
-            <div class="progress-bar" aria-label="Quiz progress"><div class="progress-fill" id="progressFill"></div></div>
-            <div class="progress-meta" id="progressMeta">Question 01 / 20</div>
+            <div class="headline">Assessment Progress</div>
+            <div class="progress-bar" aria-label="Assessment progress"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-meta" id="progressMeta">Question 01</div>
             <div class="score-preview" id="scorePreview"></div>
+            <div class="category-list" id="categoryList"></div>
           </aside>
 
           <div class="question-panel">
@@ -503,23 +492,17 @@
 
         <div class="results" id="results">
           <div class="section-kicker">Your recommendation</div>
-          <h2>Your best-fit construction agents.</h2>
+          <h2>Your operational maturity profile.</h2>
           <p class="section-copy" id="resultsIntro"></p>
+          <div class="result-hero" id="profileHero"></div>
           <div class="result-grid" id="resultGrid"></div>
           <div class="recommendation" id="implementationGrid"></div>
+          <div class="maturity-grid" id="responseGrid"></div>
           <div class="hero-actions">
-            <button class="btn btn-yellow" type="button" id="retakeBtn">Retake quiz</button>
+            <button class="btn btn-yellow" type="button" id="retakeBtn">Retake assessment</button>
+            <a class="btn btn-dark" href="contact.html">Request workflow review</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="agents" class="tab-only" aria-hidden="true">
-      <div class="section-inner">
-        <div class="section-kicker">Agent library</div>
-        <h2>The quiz recommends from nine practical construction agent types.</h2>
-        <p class="section-copy">Each agent starts with human-reviewed drafts, summaries, trackers, or checklists before moving into deeper automation.</p>
-        <div class="agent-library" id="agentLibrary"></div>
       </div>
     </section>
   </main>
@@ -527,264 +510,241 @@
   <footer class="footer">
     <div class="footer-inner">
       <span>© ConstructionFlows</span>
-      <span>AI drafts. Contractors approve.</span>
+      <span>Better workflows. Fewer loose ends.</span>
     </div>
   </footer>
 
   <script>
-    const agents = {
-      estimator: {
-        name: 'Estimator Copilot',
-        short: 'Bid desk / estimating',
-        description: 'Best for teams overwhelmed by bid invites, plan/spec reviews, scope gaps, addenda, and proposal writing.',
-        helps: ['Bid invite triage', 'Plan and spec summaries', 'Scope gap detection', 'Addendum impact reviews', 'Proposal and exclusion drafts'],
-        firstWorkflow: 'Upload a bid invite, scope sheet, and relevant spec sections. The agent returns a bid summary, scope risks, missing information, RFI questions, and proposal language.'
-      },
-      pm: {
-        name: 'PM Second Brain',
-        short: 'Project communication',
-        description: 'Best for PMs buried in meetings, action items, project emails, open items, and scattered context.',
-        helps: ['Meeting summaries', 'Action item tracking', 'Project email drafts', 'Weekly updates', 'Open risk reviews'],
-        firstWorkflow: 'Send meeting notes, emails, and open logs. The agent returns action items, owners, due dates, risk levels, and draft follow-up messages.'
-      },
-      change: {
-        name: 'Change Order Evidence Agent',
-        short: 'Margin protection',
-        description: 'Best for teams doing extra work but struggling to create strong backup and get changes approved.',
-        helps: ['Change event narratives', 'Backup checklists', 'Delay narratives', 'CO log reviews', 'Pending change follow-up'],
-        firstWorkflow: 'Enter field notes, photos, emails, or directives. The agent creates a change event summary, backup checklist, and draft notice email.'
-      },
-      field: {
-        name: 'Field Report Agent',
-        short: 'Daily reports / field notes',
-        description: 'Best when field information is valuable but inconsistent, late, or trapped in texts and voice notes.',
-        helps: ['Daily reports from rough notes', 'Voice notes to structured reports', 'Safety and quality observations', 'Possible change item flags', 'Next-day plans'],
-        firstWorkflow: 'Superintendents dictate notes at the end of the day. The agent creates a clean daily report, action items, possible change items, and next-day plan.'
-      },
-      rfi: {
-        name: 'RFI / Submittal Agent',
-        short: 'Approvals and open questions',
-        description: 'Best when unclear scope, slow approvals, and aging submittals are slowing projects down.',
-        helps: ['RFI drafts', 'RFI response summaries', 'Submittal requirement extraction', 'Submittal log creation', 'Overdue approval reviews'],
-        firstWorkflow: 'Upload spec sections or logs. The agent creates a submittal register, flags missing items, and drafts follow-up emails.'
-      },
-      schedule: {
-        name: 'Schedule Risk Agent',
-        short: 'Lookaheads / delays',
-        description: 'Best when schedule issues, trade coordination conflicts, or procurement risks are discovered too late.',
-        helps: ['Lookahead reviews', 'Schedule summaries', 'Trade conflict flags', 'Procurement risk tracking', 'Delay narrative drafts'],
-        firstWorkflow: 'Upload a lookahead schedule and project notes. The agent returns risks, blockers, coordination questions, and mitigation actions.'
-      },
-      crm: {
-        name: 'CRM / Follow-Up Agent',
-        short: 'Sales and bid follow-up',
-        description: 'Best when leads, bids, customer follow-ups, or stale opportunities are getting missed.',
-        helps: ['Lead tracking', 'Bid follow-up reminders', 'Customer message drafts', 'Stale opportunity reports', 'Weekly pipeline summaries'],
-        firstWorkflow: 'Connect a spreadsheet or CRM. The agent reviews stale records, drafts follow-ups, and creates a weekly next-action list.'
-      },
-      billing: {
-        name: 'Billing / Invoice Follow-Up Agent',
-        short: 'Cash flow support',
-        description: 'Best when slow billing, missing backup, unpaid invoices, or weak payment follow-up hurts cash flow.',
-        helps: ['Unpaid invoice reviews', 'Payment follow-up drafts', 'Missing backup checks', 'Aging reports', 'Pay app support'],
-        firstWorkflow: 'Upload invoice aging and project billing notes. The agent creates follow-up emails, backup requests, and priority collection actions.'
-      },
-      documents: {
-        name: 'Document Intake / Project Knowledge Agent',
-        short: 'Searchable project memory',
-        description: 'Best when teams waste hours finding information buried in files, emails, drawings, specs, and attachments.',
-        helps: ['Document organization', 'Key date and obligation extraction', 'Searchable project summaries', 'Decision history lookup', 'Project knowledge bases'],
-        firstWorkflow: 'Drop in project documents, emails, or PDFs. The agent extracts key dates, obligations, contacts, open questions, and action items.'
-      }
+    const categories = {
+      visibility: { name: 'Visibility', description: 'Can leadership see what is really happening before it becomes a surprise?' },
+      standardization: { name: 'Standardization', description: 'Do teams follow a consistent process, or does every person run their own version?' },
+      accountability: { name: 'Accountability', description: 'Is ownership clear when a task, deal, handoff, or follow-up stalls?' },
+      scalability: { name: 'Scalability', description: 'Can the process grow without relying on hero employees and tribal knowledge?' },
+      forecast: { name: 'Forecast Reliability', description: 'Can revenue and workload be predicted with enough confidence to plan?' },
+      ops: { name: 'Operational Readiness', description: 'Can operations execute cleanly on what sales promised?' },
+      knowledge: { name: 'Knowledge Retention', description: 'Does context survive turnover, vacations, overload, and handoffs?' },
+      customer: { name: 'Customer Experience', description: 'Does the process create trust, clarity, and speed for customers?' }
     };
 
-    const questions = [
-      { q: 'What type of company best describes you?', options: [
-        ['Specialty subcontractor', {estimator:2, change:2, field:1}],
-        ['General contractor', {pm:2, rfi:2, schedule:1}],
-        ['Construction manager / owner rep', {pm:2, schedule:2, documents:1}],
-        ['Supplier / distributor', {crm:2, rfi:1, billing:1}],
-        ['Service or maintenance contractor', {crm:2, billing:1, field:1}]
-      ]},
-      { q: 'What role are you in?', options: [
-        ['Owner / executive', {crm:2, billing:2, documents:1}],
-        ['Estimator', {estimator:3, rfi:1}],
-        ['Project manager', {pm:3, rfi:1, change:1}],
-        ['Superintendent / field leader', {field:3, schedule:1}],
-        ['Admin / coordinator / office manager', {documents:2, billing:2, crm:1}]
-      ]},
-      { q: 'Where does your team lose the most time?', options: [
-        ['Reviewing bid invites and plans', {estimator:3, documents:1}],
-        ['Writing RFIs, submittals, and project emails', {pm:2, rfi:2}],
-        ['Tracking change orders and backup', {change:3, field:1}],
-        ['Creating daily reports and field documentation', {field:3, change:1}],
-        ['Following up on customers, invoices, or open items', {crm:2, billing:2, pm:1}]
-      ]},
-      { q: 'How often do you miss or delay follow-ups?', options: [
-        ['Rarely', {pm:1}], ['Sometimes', {pm:1, crm:1}], ['Weekly', {crm:2, pm:1}], ['Almost daily', {crm:3, pm:2}], ['We do not have a reliable follow-up system', {crm:3, documents:1}]
-      ]},
-      { q: 'How are project tasks currently tracked?', options: [
-        ['Mostly in people’s heads', {pm:3, documents:1}], ['Email threads', {pm:2, documents:2}], ['Spreadsheets', {documents:1, crm:1}], ['Project management software', {pm:1, rfi:1}], ['A mix of several disconnected tools', {documents:3, pm:2}]
-      ]},
-      { q: 'What is your biggest estimating problem?', options: [
-        ['Too many bid invites to review', {estimator:3}], ['Hard to find scope gaps', {estimator:2, rfi:1}], ['Proposal writing takes too long', {estimator:3}], ['Addenda are easy to miss', {estimator:2, documents:1}], ['Estimating is not our biggest issue', {pm:1, change:1, billing:1}]
-      ]},
-      { q: 'How often do you deal with unclear scope?', options: [
-        ['Rarely', {documents:1}], ['Monthly', {rfi:1}], ['Weekly', {rfi:2, estimator:1}], ['On almost every project', {rfi:3, change:1}], ['We often discover scope issues too late', {estimator:2, change:2, rfi:1}]
-      ]},
-      { q: 'What happens when field conditions change?', options: [
-        ['We document it clearly', {field:1}], ['We usually send a quick email', {change:1, pm:1}], ['It gets discussed but not always recorded', {change:2, field:1}], ['We often scramble later to prove it', {change:3, documents:1}], ['We lose money because backup is weak', {change:3, billing:1}]
-      ]},
-      { q: 'How strong is your change order backup?', options: [
-        ['Very strong', {change:1}], ['Decent but inconsistent', {change:2}], ['Depends on the PM', {change:2, pm:1}], ['Often missing photos, tickets, or emails', {change:3, field:1}], ['We regularly have disputed or unpaid COs', {change:3, billing:2}]
-      ]},
-      { q: 'How are daily reports created?', options: [
-        ['Consistently and on time', {field:1}], ['Manually in software', {field:2}], ['From rough notes or texts', {field:3, documents:1}], ['Only when required', {field:2, change:1}], ['We do not have a consistent daily report process', {field:3, pm:1}]
-      ]},
-      { q: 'What information is hardest to find later?', options: [
-        ['Why a decision was made', {pm:2, documents:2}], ['Who owes the next action', {pm:3}], ['RFI/submittal status', {rfi:3, pm:1}], ['Change order backup', {change:3}], ['Emails, attachments, photos, or meeting notes', {documents:3, pm:1}]
-      ]},
-      { q: 'How much time does your team spend searching email or files?', options: [
-        ['Very little', {documents:1}], ['1–2 hours per week', {documents:1}], ['Several hours per week', {documents:2}], ['Daily', {documents:3, pm:1}], ['It is a major bottleneck', {documents:3, pm:2}]
-      ]},
-      { q: 'Which project documents create the most friction?', options: [
-        ['Plans and specs', {documents:2, estimator:2}], ['RFIs', {rfi:3}], ['Submittals', {rfi:3}], ['Change orders', {change:3}], ['Invoices, pay apps, or billing backup', {billing:3}]
-      ]},
-      { q: 'How often are submittals late, missing, or hard to track?', options: [
-        ['Rarely', {rfi:1}], ['Sometimes', {rfi:1}], ['Often', {rfi:2, pm:1}], ['On most projects', {rfi:3, pm:1}], ['We do not have a clean submittal process', {rfi:3, documents:1}]
-      ]},
-      { q: 'How do you currently prepare for weekly project meetings?', options: [
-        ['Clean agenda and updates are ready', {pm:1}], ['PM manually reviews notes and logs', {pm:2}], ['We pull updates from multiple places', {pm:2, documents:2}], ['Meetings reveal things we should have known earlier', {pm:3, schedule:1}], ['We do not have a consistent meeting prep process', {pm:3}]
-      ]},
-      { q: 'What kind of project risks surprise you most?', options: [
-        ['Schedule delays', {schedule:3}], ['Missing approvals', {rfi:2, pm:1}], ['Procurement or long-lead items', {schedule:2, rfi:1}], ['Scope gaps / change orders', {change:2, estimator:1}], ['Communication breakdowns', {pm:2, crm:1}]
-      ]},
-      { q: 'What is your current CRM or sales follow-up process?', options: [
-        ['Strong CRM with clear follow-ups', {crm:1}], ['Spreadsheet', {crm:2}], ['Email inbox and memory', {crm:3, documents:1}], ['Inconsistent', {crm:3}], ['We are leaving leads or bids untouched', {crm:3, estimator:1}]
-      ]},
-      { q: 'Where does money leak most often?', options: [
-        ['Missed scope in bids', {estimator:3}], ['Unapproved change work', {change:3}], ['Slow billing or invoice follow-up', {billing:3}], ['Poor documentation', {documents:2, change:2}], ['Rework or coordination issues', {field:1, schedule:2, pm:1}]
-      ]},
-      { q: 'How comfortable is your team with AI?', options: [
-        ['Already using it daily', {pm:1, documents:1}], ['Some people use ChatGPT', {estimator:1, pm:1}], ['Curious but unsure where to start', {field:1, crm:1}], ['Skeptical but open if practical', {billing:1, change:1}], ['Resistant unless it is very simple', {field:1, documents:1}]
-      ], readiness: true},
-      { q: 'If you could automate one outcome first, what would it be?', options: [
-        ['Decide which bids are worth pursuing', {estimator:3}], ['Draft better RFIs, emails, and project updates', {pm:2, rfi:2}], ['Build stronger change order backup', {change:3}], ['Create clean reports from field notes', {field:3}], ['Never miss a follow-up again', {crm:2, pm:1, billing:1}]
-      ]}
+    const choice4 = [
+      ['A', 4], ['B', 3], ['C', 2], ['D', 1]
     ];
 
-    const readinessCopy = [
-      'Your team is ready for integrated workflow agents connected to files, email, CRM, or project systems.',
-      'Start with a prompt library plus semi-automated document and communication workflows.',
-      'Start with one low-risk drafting agent that creates checklists, summaries, and emails for human review.',
-      'Use a human-review-first rollout: the agent drafts, flags, and organizes; your team approves everything.',
-      'Start with invisible admin support: summaries, reminders, draft reports, and next-action lists.'
+    const questions = [
+      { section: 'Lead Source Intelligence', q: 'Do you know which lead sources actually close best?', why: 'This exposes marketing-to-sales visibility gaps.', scores: ['visibility','forecast','scalability'], options: [['Yes — tracked and reported consistently',4], ['Mostly — some tracking gaps',3], ['Rough idea but unreliable',2], ['No visibility',1]] },
+      { section: 'Lead Source Intelligence', q: 'Are certain reps better at converting certain lead types?', why: 'This reveals whether routing is based on evidence or gut feel.', scores: ['visibility','standardization','scalability'], options: [['Yes — assignment rules reflect this',4], ['Some patterns identified',3], ['Anecdotal only',2], ['No visibility',1]] },
+      { section: 'Lead Source Intelligence', q: 'How much manual work is required before a lead is sales-ready?', why: 'Hidden admin drag is one of the quietest blockers to scale.', scores: ['scalability','standardization','customer'], options: [['Fully automated intake',4], ['Minimal cleanup',3], ['Moderate manual enrichment',2], ['Significant admin before outreach',1]] },
+
+      { section: 'Estimating / Proposal Workflow', q: 'Where does estimating information currently live?', why: 'Proposal inconsistency creates margin risk and downstream confusion.', scores: ['knowledge','standardization','ops'], options: [['Centralized system',4], ['Shared folders/spreadsheets',3], ['Individual estimator files',2], ['Mixed across systems',1]] },
+      { section: 'Estimating / Proposal Workflow', q: 'How often are proposals delayed because information is missing?', why: 'Missing information before proposal usually becomes rework after close.', scores: ['ops','customer','standardization'], options: [['Rarely',4], ['Occasionally',3], ['Frequently',2], ['Constant issue',1]] },
+      { section: 'Estimating / Proposal Workflow', q: 'How standardized are your proposal templates and scopes?', why: 'Variation in proposal language can turn into variation in execution.', scores: ['standardization','ops','scalability'], options: [['Fully standardized',4], ['Mostly standardized',3], ['Significant variation',2], ['Every rep/team does it differently',1]] },
+
+      { section: 'Accountability & Ownership', q: 'If a task is overdue, who owns escalating it?', why: 'This is where workflows reveal whether ownership is real or implied.', scores: ['accountability','scalability','customer'], options: [['Clearly defined ownership',4], ['Usually managers',3], ['Depends on the situation',2], ['Nobody consistently owns it',1]] },
+      { section: 'Accountability & Ownership', q: 'How often do deals rely on one person remembering something important?', why: 'When memory is the system, turnover and overload become operational risks.', scores: ['knowledge','accountability','scalability'], options: [['Rarely',4], ['Occasionally',3], ['Frequently',2], ['Constantly',1]] },
+      { section: 'Accountability & Ownership', q: 'If leadership asked for pipeline accuracy today, how confident would you be?', why: 'Pipeline confidence is an accountability test, not just a reporting test.', scores: ['forecast','visibility','accountability'], options: [['Very confident',4], ['Mostly confident',3], ['Moderate concern',2], ['Low confidence',1]] },
+
+      { section: 'Forecasting & Revenue Visibility', q: 'How accurate is your sales forecast?', why: 'Forecast reliability connects sales workflow directly to operational planning.', scores: ['forecast','visibility'], options: [['Within 5–10% consistently',4], ['Usually close',3], ['Often inaccurate',2], ['Essentially guessing',1]] },
+      { section: 'Forecasting & Revenue Visibility', q: 'What typically causes forecast misses?', why: 'The reason for the miss tells you which part of the workflow needs attention.', scores: ['forecast','visibility','standardization'], options: [['Market factors',4], ['Customer delays',3], ['Poor pipeline visibility',2], ['Reps not updating information',1], ['Undefined stages',1]] },
+      { section: 'Forecasting & Revenue Visibility', q: 'How far ahead can you confidently forecast workload/revenue?', why: 'Short visibility windows make staffing, cash flow, and project planning harder.', scores: ['forecast','ops','scalability'], options: [['6–12 months',4], ['3–6 months',3], ['1–3 months',2], ['Less than 30 days',1]] },
+
+      { section: 'Communication & Decision Tracking', q: 'Where are key customer decisions typically documented?', why: 'Decision history is only useful if the next person can find it.', scores: ['knowledge','visibility','customer'], options: [['CRM/system notes',4], ['Email threads',3], ['Meeting notes/docs',2], ['Mostly verbal',1]] },
+      { section: 'Communication & Decision Tracking', q: 'How often do teams revisit old conversations to understand decisions?', why: 'If people keep searching old conversations, the workflow is not preserving context.', scores: ['knowledge','customer','scalability'], options: [['Rarely needed',4], ['Occasionally',3], ['Frequently',2], ['Constant issue',1]] },
+      { section: 'Communication & Decision Tracking', q: 'How easy is it for another team member to understand the full history of a deal?', why: 'This exposes tribal knowledge risk.', scores: ['knowledge','visibility','scalability'], options: [['Very easy',4], ['Mostly understandable',3], ['Difficult',2], ['Nearly impossible without asking someone',1]] },
+
+      { section: 'Operational Readiness Before Close', q: 'Before a project is sold, how involved is operations/preconstruction?', why: 'This is where margin erosion often starts before the job even opens.', scores: ['ops','accountability','forecast'], options: [['Deeply involved throughout',4], ['Involved for larger projects',3], ['Occasionally consulted',2], ['Rarely involved before close',1]] },
+      { section: 'Operational Readiness Before Close', q: 'How often are sold projects operationally different than expected?', why: 'Sales-to-ops mismatch is a handoff problem with a margin consequence.', scores: ['ops','standardization','customer'], options: [['Rarely',4], ['Occasionally',3], ['Frequently',2], ['Constant issue',1]] },
+      { section: 'Operational Readiness Before Close', q: 'How often are scope assumptions undocumented?', why: 'Undocumented assumptions become disputes, rework, and uncomfortable handoffs.', scores: ['ops','knowledge','accountability'], options: [['Rarely',4], ['Occasionally',3], ['Frequently',2], ['Constantly',1]] },
+
+      { section: 'Process Variability', q: 'How differently do top performers operate compared to average reps?', why: 'Scalable companies reduce unnecessary process variability.', scores: ['standardization','scalability'], options: [['Very similarly',4], ['Minor variations',3], ['Significant differences',2], ['Everyone has their own process',1]] },
+      { section: 'Process Variability', q: 'Could a new hire follow your sales process without shadowing someone?', why: 'Documentation is a maturity signal, not paperwork for its own sake.', scores: ['standardization','knowledge','scalability'], options: [['Yes — fully documented',4], ['Mostly',3], ['Only partially',2], ['No — relies on tribal knowledge',1]] },
+      { section: 'Process Variability', q: 'How often are exceptions handled outside the normal process?', why: 'Too many exceptions usually means the normal process is not trusted.', scores: ['standardization','accountability','customer'], options: [['Rarely',4], ['Occasionally',3], ['Frequently',2], ['Constantly',1]] },
+
+      { section: 'Customer Experience Friction', q: 'Where do customers experience the most confusion or delays?', why: 'Internal workflow problems eventually become customer experience problems.', scores: [], options: [['Initial response',0], ['Proposal process',0], ['Contracting',0], ['Handoff/startup',0], ['Communication during execution',0]] },
+      { section: 'Customer Experience Friction', q: 'How often do customers need to repeat information?', why: 'Repeated customer information is a handoff failure customers can feel.', scores: ['customer','knowledge','standardization'], options: [['Rarely',4], ['Occasionally',3], ['Frequently',2], ['Constantly',1]] },
+      { section: 'Customer Experience Friction', q: 'How consistent is the customer experience across reps?', why: 'Consistency is a trust signal.', scores: ['customer','standardization','scalability'], options: [['Very consistent',4], ['Mostly consistent',3], ['Significant variation',2], ['Depends entirely on the rep',1]] },
+
+      { section: 'Automation Readiness', q: 'Are repetitive sales/admin tasks standardized enough to automate?', why: 'Automation readiness is really process readiness.', scores: ['standardization','scalability','visibility'], options: [['Yes — highly standardized',4], ['Mostly standardized',3], ['Some standardization',2], ['Highly inconsistent',1]] },
+      { section: 'Automation Readiness', q: 'Which process consumes the most unnecessary manual effort?', why: 'This answer is often the best starting point for workflow cleanup.', type: 'text', placeholder: 'Example: proposal follow-up, lead cleanup, project handoff, missing billing backup...' },
+      { section: 'Automation Readiness', q: 'If you improved one workflow tomorrow, what would it be?', why: 'The first fix should be specific enough to assign, measure, and repeat.', type: 'text', placeholder: 'Example: standardize the sales-to-ops handoff before project startup...' }
+    ];
+
+    const profiles = [
+      { min: 0, name: 'Reactive & Tribal', summary: 'The workflow depends heavily on people remembering, chasing, and interpreting context. Visibility is limited, ownership is inconsistent, and leadership likely sees problems after they have already affected customers or operations.', priority: ['Make ownership explicit', 'Create one source of truth for active deals', 'Document the handoff from sales to operations'] },
+      { min: 45, name: 'Growing but Fragmented', summary: 'The business has working habits, but they vary by person, team, or project. Some information is visible, some lives in inboxes and spreadsheets, and follow-up depends too much on individual discipline.', priority: ['Standardize the highest-friction workflow', 'Define escalation rules for stalled tasks', 'Clean up lead and proposal tracking'] },
+      { min: 62, name: 'Structured but Siloed', summary: 'The core process exists, but information still gets trapped between departments, systems, or roles. Forecasting, customer history, and operational readiness may look fine until a handoff gets tested.', priority: ['Tighten sales-to-ops handoff requirements', 'Connect decision history to pipeline stages', 'Measure forecast misses by cause'] },
+      { min: 78, name: 'Connected Operations', summary: 'The workflow is mostly visible and repeatable. The biggest opportunity is reducing remaining exceptions, improving forecast confidence, and turning strong individual habits into a scalable operating system.', priority: ['Reduce process exceptions', 'Improve cross-team reporting', 'Automate the cleanest repetitive workflows'] },
+      { min: 90, name: 'Operationally Mature', summary: 'The process is visible, owned, and repeatable. Leadership can see reality, teams know what happens next, and customer experience is less dependent on individual heroics.', priority: ['Benchmark leading indicators', 'Automate low-risk admin tasks', 'Use workflow data to coach and plan capacity'] }
     ];
 
     let current = 0;
     const answers = Array(questions.length).fill(null);
+    const textAnswers = Array(questions.length).fill('');
     const questionHost = document.getElementById('questionHost');
     const progressFill = document.getElementById('progressFill');
     const progressMeta = document.getElementById('progressMeta');
     const scorePreview = document.getElementById('scorePreview');
+    const categoryList = document.getElementById('categoryList');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const results = document.getElementById('results');
     const resultGrid = document.getElementById('resultGrid');
     const implementationGrid = document.getElementById('implementationGrid');
+    const responseGrid = document.getElementById('responseGrid');
+    const profileHero = document.getElementById('profileHero');
     const resultsIntro = document.getElementById('resultsIntro');
-    const agentsSection = document.getElementById('agents');
 
-    function scoreAnswers() {
-      const scores = Object.fromEntries(Object.keys(agents).map(key => [key, 0]));
-      answers.forEach((answerIndex, questionIndex) => {
-        if (answerIndex === null) return;
-        const weights = questions[questionIndex].options[answerIndex][1];
-        Object.entries(weights).forEach(([agent, points]) => scores[agent] += points);
+    function categoryScores() {
+      const totals = Object.fromEntries(Object.keys(categories).map(key => [key, { earned: 0, possible: 0 }]));
+      questions.forEach((question, index) => {
+        if (question.type === 'text' || !question.scores?.length || answers[index] === null) return;
+        const value = question.options[answers[index]][1];
+        question.scores.forEach(category => {
+          totals[category].earned += value;
+          totals[category].possible += 4;
+        });
       });
-      return scores;
+      return totals;
     }
 
-    function rankedScores() {
-      const scores = scoreAnswers();
-      return Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    function overallScore() {
+      const totals = categoryScores();
+      const earned = Object.values(totals).reduce((sum, item) => sum + item.earned, 0);
+      const possible = Object.values(totals).reduce((sum, item) => sum + item.possible, 0);
+      return possible ? Math.round((earned / possible) * 100) : 0;
+    }
+
+    function profileFor(score) {
+      return profiles.filter(profile => score >= profile.min).slice(-1)[0];
+    }
+
+    function rankedCategories() {
+      const totals = categoryScores();
+      return Object.entries(totals).map(([key, item]) => ({
+        key,
+        pct: item.possible ? Math.round((item.earned / item.possible) * 100) : 0,
+        earned: item.earned,
+        possible: item.possible
+      })).sort((a, b) => a.pct - b.pct);
     }
 
     function renderQuestion() {
       const item = questions[current];
       const questionNumber = String(current + 1).padStart(2, '0');
+      const isText = item.type === 'text';
       questionHost.innerHTML = `
         <div class="question-top">
           <span class="number">${questionNumber}</span>
-          <span class="small-pill">${answers[current] === null ? 'Select one' : 'Answered'}</span>
+          <span class="small-pill">${item.section}</span>
         </div>
         <h3>${item.q}</h3>
-        <div class="options">
-          ${item.options.map((option, index) => `
-            <label class="option ${answers[current] === index ? 'selected' : ''}">
-              <input type="radio" name="q${current}" value="${index}" ${answers[current] === index ? 'checked' : ''} />
-              <span class="option-letter">${String.fromCharCode(65 + index)}</span>
-              <span>${option[0]}</span>
-            </label>
-          `).join('')}
-        </div>
+        <p class="question-context">${item.why}</p>
+        ${isText ? `
+          <textarea class="open-response" id="openResponse" placeholder="${item.placeholder || 'Type your response...'}">${textAnswers[current]}</textarea>
+        ` : `
+          <div class="options">
+            ${item.options.map((option, index) => `
+              <label class="option ${answers[current] === index ? 'selected' : ''}">
+                <input type="radio" name="q${current}" value="${index}" ${answers[current] === index ? 'checked' : ''} />
+                <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                <span>${option[0]}</span>
+              </label>
+            `).join('')}
+          </div>
+        `}
       `;
 
-      questionHost.querySelectorAll('.option').forEach((label, index) => {
-        label.addEventListener('click', () => {
-          answers[current] = index;
-          renderQuestion();
+      if (isText) {
+        const openResponse = document.getElementById('openResponse');
+        openResponse.addEventListener('input', () => {
+          textAnswers[current] = openResponse.value;
           updateProgress();
         });
-      });
+      } else {
+        questionHost.querySelectorAll('.option').forEach((label, index) => {
+          label.addEventListener('click', () => {
+            answers[current] = index;
+            renderQuestion();
+            updateProgress();
+          });
+        });
+      }
 
       prevBtn.disabled = current === 0;
       nextBtn.textContent = current === questions.length - 1 ? 'See results' : 'Next';
-      nextBtn.disabled = answers[current] === null;
+      nextBtn.disabled = !isAnswered(current);
       updateProgress();
     }
 
+    function isAnswered(index) {
+      const question = questions[index];
+      if (question.type === 'text') return textAnswers[index].trim().length > 0;
+      return answers[index] !== null;
+    }
+
     function updateProgress() {
-      const answered = answers.filter(answer => answer !== null).length;
+      const answered = questions.filter((_, index) => isAnswered(index)).length;
       progressFill.style.width = `${(answered / questions.length) * 100}%`;
       progressMeta.textContent = `Question ${String(current + 1).padStart(2, '0')} / ${questions.length} · ${answered} answered`;
-      const top = rankedScores().slice(0, 4);
-      scorePreview.innerHTML = top.map(([key, score], index) => `
-        <div class="score-row"><span>${String(index + 1).padStart(2, '0')} ${agents[key].name}</span><span>${score}</span></div>
+      const score = overallScore();
+      const profile = profileFor(score);
+      scorePreview.innerHTML = `
+        <div class="score-row"><span>Overall maturity</span><span>${score}%</span></div>
+        <div class="score-row"><span>Current profile</span><span>${profile.name}</span></div>
+      `;
+      categoryList.innerHTML = rankedCategories().slice(0, 4).map(item => `
+        <div class="category-pill"><span>${categories[item.key].name}</span><span>${item.pct}%</span></div>
       `).join('');
+      nextBtn.disabled = !isAnswered(current);
     }
 
     function showResults() {
-      const ranked = rankedScores();
-      const top = ranked.slice(0, 3);
-      const maxScore = Math.max(1, top[0][1]);
-      const readinessIndex = answers[18] ?? 3;
-      resultsIntro.textContent = readinessCopy[readinessIndex];
-      resultGrid.innerHTML = top.map(([key, score], index) => {
-        const agent = agents[key];
-        const pct = Math.round((score / maxScore) * 100);
+      const score = overallScore();
+      const profile = profileFor(score);
+      const ranked = rankedCategories();
+      const weakest = ranked.slice(0, 3);
+      const strongest = ranked.slice(-3).reverse();
+      resultsIntro.textContent = 'Use this result as a starting point for a workflow review. The score is less important than the pattern: where visibility, ownership, handoffs, and customer experience start breaking down.';
+      profileHero.innerHTML = `
+        <span class="result-rank">${score}% maturity score</span>
+        <h3>${profile.name}</h3>
+        <p>${profile.summary}</p>
+      `;
+
+      resultGrid.innerHTML = [...weakest, ...strongest].map((item, index) => {
+        const category = categories[item.key];
+        const label = index < 3 ? 'Priority gap' : 'Relative strength';
         return `
-          <article class="result-card ${index === 0 ? 'primary-result' : ''}">
-            <span class="result-rank">${index === 0 ? 'Primary' : `Option ${index + 1}`}</span>
-            <h3>${agent.name}</h3>
-            <p>${agent.description}</p>
-            <div class="score-meter" aria-label="Score"><span style="width:${pct}%"></span></div>
-            <p><strong>Score:</strong> ${score}</p>
-            <ul>${agent.helps.map(item => `<li>${item}</li>`).join('')}</ul>
+          <article class="result-card">
+            <span class="result-rank">${label}</span>
+            <h3>${category.name}</h3>
+            <p>${category.description}</p>
+            <div class="score-meter" aria-label="Score"><span style="width:${item.pct}%"></span></div>
+            <p><strong>Score:</strong> ${item.pct}%</p>
           </article>
         `;
       }).join('');
 
-      const primary = agents[top[0][0]];
+      implementationGrid.innerHTML = profile.priority.map((item, index) => `
+        <article class="rec-card"><span class="number">${String(index + 1).padStart(2, '0')}</span><h3>First fix</h3><p>${item}</p></article>
+      `).join('');
+
+      responseGrid.innerHTML = questions.filter(question => question.type === 'text').map((question, idx) => {
+        const questionIndex = questions.indexOf(question);
+        return `
+          <article class="maturity-card">
+            <span class="result-rank">Open response</span>
+            <h3>${question.q}</h3>
+            <p>${textAnswers[questionIndex] || 'No response captured.'}</p>
+          </article>
+        `;
+      }).join('');
+
       try {
-        localStorage.setItem('constructionflowsAgentFitPrimary', primary.name);
-        localStorage.setItem('constructionflowsAgentFitTopThree', top.map(([key, score]) => `${agents[key].name}: ${score}`).join(' | '));
+        const topGaps = weakest.map(item => `${categories[item.key].name}: ${item.pct}%`).join(' | ');
+        localStorage.setItem('constructionflowsAgentFitPrimary', `${profile.name} (${score}%)`);
+        localStorage.setItem('constructionflowsAgentFitTopThree', `Operational maturity: ${profile.name} (${score}%). Priority gaps: ${topGaps}`);
       } catch (error) {}
-      implementationGrid.innerHTML = `
-        <article class="rec-card"><span class="number">01</span><h3>First workflow</h3><p>${primary.firstWorkflow}</p></article>
-        <article class="rec-card"><span class="number">02</span><h3>Rollout rule</h3><p>Begin with read-only inputs and human approval. The agent drafts, organizes, and flags risk; your team approves before anything goes to a customer, GC, owner, or vendor.</p></article>
-        <article class="rec-card"><span class="number">03</span><h3>Next step</h3><p>Pick one live project or one repeatable office workflow. Run the agent for two weeks, measure time saved, missed items caught, and follow-ups completed.</p></article>
-      `;
+
       results.classList.add('show');
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -797,7 +757,7 @@
     });
 
     nextBtn.addEventListener('click', () => {
-      if (answers[current] === null) return;
+      if (!isAnswered(current)) return;
       if (current < questions.length - 1) {
         current += 1;
         renderQuestion();
@@ -808,53 +768,14 @@
 
     document.getElementById('retakeBtn').addEventListener('click', () => {
       answers.fill(null);
+      textAnswers.fill('');
       current = 0;
       results.classList.remove('show');
       renderQuestion();
-      document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('assessment').scrollIntoView({ behavior: 'smooth' });
     });
-
-    document.getElementById('agentLibrary').innerHTML = Object.entries(agents).map(([key, agent], index) => `
-      <article class="agent-card">
-        <span class="number">${String(index + 1).padStart(2, '0')}</span>
-        <h3>${agent.name}</h3>
-        <p><strong>${agent.short}</strong></p>
-        <p>${agent.description}</p>
-      </article>
-    `).join('');
-
-    function updateAgentLibraryVisibility(scrollToLibrary = false) {
-      const shouldShow = window.location.hash === '#agents';
-      agentsSection.classList.toggle('is-visible', shouldShow);
-      agentsSection.setAttribute('aria-hidden', String(!shouldShow));
-      if (shouldShow && scrollToLibrary) {
-        requestAnimationFrame(() => agentsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-      }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', event => {
-        const targetHash = link.getAttribute('href');
-        if (targetHash === '#agents') {
-          event.preventDefault();
-          history.pushState(null, '', targetHash);
-          updateAgentLibraryVisibility(true);
-          return;
-        }
-
-        if (agentsSection.classList.contains('is-visible')) {
-          agentsSection.classList.remove('is-visible');
-          agentsSection.setAttribute('aria-hidden', 'true');
-        }
-      });
-    });
-
-    window.addEventListener('hashchange', () => updateAgentLibraryVisibility(window.location.hash === '#agents'));
 
     renderQuestion();
-    updateAgentLibraryVisibility(window.location.hash === '#agents');
-
   </script>
-
 </body>
 </html>
