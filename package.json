@@ -1,0 +1,14 @@
+{
+  "name": "constructionflows-agent-fit-quiz",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Interactive ConstructionFlows quiz to recommend the best construction AI agents to implement first.",
+  "scripts": {
+    "start": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vite": "latest"
+  }
+}
