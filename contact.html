@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact ConstructionFlows</title>
-  <meta name="description" content="Contact ConstructionFlows to discuss construction AI agent implementation for estimating, project management, change orders, field reporting, billing, CRM, and document workflows." />
+  <meta name="description" content="Contact ConstructionFlows for a practical construction AI workflow review." />
   <meta property="og:title" content="Contact ConstructionFlows" />
-  <meta property="og:description" content="Tell us where your construction workflow is leaking time or margin. We'll recommend a practical AI agent implementation path." />
+  <meta property="og:description" content="Tell us your biggest workflow bottleneck and we’ll recommend a practical first AI agent to test." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -363,10 +363,54 @@
     .footer { background: var(--black); color: var(--white); padding: 28px 22px; }
     .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 
+
+    .cta-panel {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+    }
+    .cta-copy, .cta-action {
+      background: var(--yellow);
+      padding: 22px;
+    }
+    .cta-copy { border-right: var(--line); }
+    .cta-copy strong {
+      display: block;
+      font-family: var(--headline);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: .86;
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .cta-copy span { color: var(--black); font-weight: 600; line-height: 1.55; }
+    .cta-action { display: flex; align-items: center; justify-content: center; min-width: 260px; }
+    .mini-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 18px;
+    }
+    .mini-proof span {
+      display: inline-flex;
+      align-items: center;
+      border: var(--line);
+      background: var(--white);
+      padding: 8px 10px;
+      margin: 0 -2px -2px 0;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
     @media (max-width: 960px) {
       .nav-links { display: none; }
-      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library { grid-template-columns: 1fr; }
-      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card { border-right: 0; border-bottom: var(--line); }
+      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library, .cta-panel { grid-template-columns: 1fr; }
+      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card, .cta-copy { border-right: 0; border-bottom: var(--line); }
       .spec-card:last-child, .rec-card:last-child, .agent-card:last-child { border-bottom: 0; }
       .options { grid-template-columns: 1fr; }
       .option { border-right: 0; }
@@ -377,68 +421,140 @@
       section { padding: 58px 20px; }
     }
 
-    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 0; border: var(--line); background: var(--black); margin-top: 42px; }
-    .contact-panel, .form-panel { background: var(--white); padding: clamp(22px, 4vw, 38px); }
-    .contact-panel { border-right: var(--line); background: var(--warm); }
-    .contact-panel h2, .form-panel h2 { font-size: clamp(42px, 6vw, 72px); line-height: .86; letter-spacing: -.03em; }
-    .contact-panel p, .form-panel p { color: var(--secondary); line-height: 1.65; font-weight: 500; }
-    .lead-specs { display: grid; gap: 0; border: var(--line); background: var(--black); margin-top: 28px; }
-    .lead-spec { background: var(--white); padding: 16px; border-bottom: var(--line); }
-    .lead-spec:last-child { border-bottom: 0; }
-    .lead-spec strong { display: block; font-family: var(--headline); font-size: 28px; line-height: .9; text-transform: uppercase; margin-bottom: 8px; }
-    .lead-spec span { color: var(--secondary); font-weight: 500; line-height: 1.55; }
-    .lead-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: var(--line); background: var(--black); margin-top: 26px; }
-    .field { background: var(--white); padding: 14px; border-right: var(--line); border-bottom: var(--line); }
-    .field:nth-child(2n) { border-right: 0; }
-    .field.full { grid-column: 1 / -1; border-right: 0; }
+    .simple-contact {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+      margin-top: 42px;
+    }
+    .contact-note, .contact-form-panel { background: var(--white); padding: clamp(22px, 4vw, 38px); }
+    .contact-note { background: var(--yellow); border-right: var(--line); }
+    .contact-note h2, .contact-form-panel h2 { font-size: clamp(42px, 6vw, 72px); line-height: .86; letter-spacing: -.03em; }
+    .contact-note p, .contact-form-panel p { color: var(--secondary); line-height: 1.65; font-weight: 500; }
+    .contact-note p { color: var(--black); }
+    .simple-form { display: grid; gap: 0; border: var(--line); background: var(--black); margin-top: 24px; }
+    .field { background: var(--white); padding: 14px; border-bottom: var(--line); }
+    .field:last-child { border-bottom: 0; }
     .field label { display: block; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 9px; }
     .field input, .field select, .field textarea { width: 100%; border: var(--line); border-radius: var(--radius); background: var(--warm); color: var(--black); padding: 12px; font-size: 15px; font-weight: 500; outline: none; }
-    .field textarea { min-height: 132px; resize: vertical; }
+    .field textarea { min-height: 140px; resize: vertical; }
     .field input:focus, .field select:focus, .field textarea:focus { background: var(--yellow); }
     .form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; align-items: center; }
-    .form-note { color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.5; max-width: 520px; }
-    .contact-methods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: var(--line); background: var(--black); margin-top: 42px; }
-    .method-card { background: var(--white); padding: 22px; border-right: var(--line); }
-    .method-card:last-child { border-right: 0; }
-    .method-card h3 { font-size: 32px; line-height: .9; margin: 12px 0 10px; }
-    .method-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
-    @media (max-width: 960px) { .contact-grid, .lead-form, .contact-methods { grid-template-columns: 1fr; } .contact-panel, .field, .method-card { border-right: 0; border-bottom: var(--line); } .field:nth-child(2n) { border-right: 0; } .method-card:last-child { border-bottom: 0; } }
+    .form-note { color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.5; max-width: 560px; }
+    @media (max-width: 960px) { .simple-contact { grid-template-columns: 1fr; } .contact-note { border-right: 0; border-bottom: var(--line); } }
 
   </style>
 </head>
 <body>
-  <nav class="nav"><div class="nav-inner"><a class="brand" href="index.html#top"><span class="logo">CF</span><span>ConstructionFlows</span></a><div class="nav-links"><a href="index.html#quiz">Take quiz</a><a href="index.html#agents">Agent types</a><a href="contact.html">Contact us</a></div></div></nav>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#top"><span class="logo">CF</span><span>ConstructionFlows</span></a>
+      <div class="nav-links">
+        <a href="index.html#quiz">Take quiz</a>
+        <a href="index.html#agents">Agent types</a>
+        <a href="contact.html">Contact us</a>
+      </div>
+    </div>
+  </nav>
+
   <main id="top">
-    <header class="hero"><div class="hero-inner"><div class="badge">Lead intake / implementation request</div><h1>Tell us where your construction workflow is leaking time or margin.</h1><p class="hero-copy">Share a few details about your company, current bottleneck, and agent interest. We’ll use it to recommend a practical first implementation path — human-review-first, contractor-friendly, and tied to real operations.</p></div></header>
-    <section><div class="section-inner"><div class="section-kicker">Contact us</div><h2>Book a workflow review.</h2><p class="section-copy">This form captures enough context to turn your quiz result or workflow pain into a concrete AI agent recommendation.</p>
-      <div class="contact-grid">
-        <aside class="contact-panel"><span class="number">01</span><h2>What happens next?</h2><p>We review your role, company type, workflow pain, and any quiz result. Then we suggest the best first agent to test with one live workflow.</p><div class="lead-specs"><div class="lead-spec"><strong>01 / Identify</strong><span>Pinpoint the workflow: bids, RFIs, change orders, field reports, billing, CRM, or document intake.</span></div><div class="lead-spec"><strong>02 / Scope</strong><span>Define the first low-risk workflow where AI drafts, organizes, or flags issues for human approval.</span></div><div class="lead-spec"><strong>03 / Implement</strong><span>Build a simple agent workflow around your existing tools, documents, and approval process.</span></div></div></aside>
-        <div class="form-panel"><span class="number">02</span><h2>Lead details</h2><p>Submissions are sent to <strong>hello@constructionflows.com</strong>. Include your quiz result if you have one.</p>
-          <form class="lead-form" id="leadForm" action="https://formsubmit.co/hello@constructionflows.com" method="POST">
-            <input type="hidden" name="_subject" value="New ConstructionFlows agent-fit lead" /><input type="hidden" name="_template" value="table" /><input type="hidden" name="_captcha" value="false" /><input type="hidden" name="_next" value="https://constructionflows-agent-fit-quiz.vercel.app/thank-you.html" /><input type="hidden" name="source" value="ConstructionFlows Agent Fit Quiz contact page" />
-            <div class="field"><label for="name">Name *</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
-            <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
-            <div class="field"><label for="company">Company *</label><input id="company" name="company" type="text" autocomplete="organization" required /></div>
-            <div class="field"><label for="role">Role</label><select id="role" name="role"><option value="">Select role</option><option>Owner / executive</option><option>Estimator</option><option>Project manager</option><option>Superintendent / field leader</option><option>Admin / coordinator</option><option>Other</option></select></div>
-            <div class="field"><label for="company_type">Company type</label><select id="company_type" name="company_type"><option value="">Select company type</option><option>Specialty subcontractor</option><option>General contractor</option><option>Construction manager / owner rep</option><option>Supplier / distributor</option><option>Service or maintenance contractor</option><option>Other</option></select></div>
-            <div class="field"><label for="agent_interest">Agent interest</label><select id="agent_interest" name="agent_interest"><option value="">Select agent</option><option>Estimator Copilot</option><option>PM Second Brain</option><option>Change Order Evidence Agent</option><option>Field Report Agent</option><option>RFI / Submittal Agent</option><option>Schedule Risk Agent</option><option>CRM / Follow-Up Agent</option><option>Billing / Invoice Follow-Up Agent</option><option>Document Intake / Project Knowledge Agent</option><option>Not sure yet</option></select></div>
-            <div class="field full"><label for="quiz_result">Quiz result</label><input id="quiz_result" name="quiz_result" type="text" placeholder="Example: PM Second Brain" /></div>
-            <div class="field full"><label for="biggest_pain">Biggest workflow pain *</label><textarea id="biggest_pain" name="biggest_pain" required placeholder="Example: We lose change order backup in texts and emails, then scramble when billing."></textarea></div>
-            <div class="field full"><label for="tools">Current tools</label><input id="tools" name="current_tools" type="text" placeholder="Example: Procore, monday.com, Google Drive, Gmail, Excel" /></div>
-            <div class="field full"><label for="timeline">Desired timeline</label><select id="timeline" name="timeline"><option value="">Select timeline</option><option>ASAP</option><option>Next 2 weeks</option><option>Next 30 days</option><option>This quarter</option><option>Just researching</option></select></div>
-          </form>
-          <div class="form-actions"><button class="btn btn-yellow" type="button" id="submitProxy">Submit request</button><a class="btn" href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20agent%20implementation">Email instead</a><div class="form-note">By submitting, you agree to be contacted about ConstructionFlows workflows. First FormSubmit use may require email confirmation for delivery.</div></div>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="badge">Workflow review request</div>
+        <h1>Want help choosing your first construction AI agent?</h1>
+        <p class="hero-copy">Send the basics. We’ll look at your workflow pain and point you toward the simplest agent to test first.</p>
+      </div>
+    </header>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-kicker">Contact us</div>
+        <h2>Keep it simple.</h2>
+        <p class="section-copy">No long intake packet. Just tell us who you are, what hurts, and which agent you’re considering.</p>
+
+        <div class="simple-contact">
+          <aside class="contact-note">
+            <span class="number">01</span>
+            <h2>What to send</h2>
+            <p>One painful workflow is enough: missed bid follow-up, weak change order backup, PM overload, daily reports, billing, or document chaos.</p>
+            <p><strong>Email:</strong> <a href="mailto:hello@constructionflows.com">hello@constructionflows.com</a></p>
+          </aside>
+
+          <div class="contact-form-panel">
+            <span class="number">02</span>
+            <h2>Lead form</h2>
+            <p>Submissions go to <strong>hello@constructionflows.com</strong>.</p>
+
+            <form class="simple-form" id="leadForm" action="https://formsubmit.co/hello@constructionflows.com" method="POST">
+              <input type="hidden" name="_subject" value="New ConstructionFlows workflow review lead" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="https://constructionflows-agent-fit-quiz.vercel.app/thank-you.html" />
+              <input type="hidden" name="source" value="ConstructionFlows simplified contact page" />
+
+              <div class="field">
+                <label for="name">Name *</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="agent_interest">Agent interest</label>
+                <select id="agent_interest" name="agent_interest">
+                  <option value="">Not sure yet</option>
+                  <option>Estimator Copilot</option>
+                  <option>PM Second Brain</option>
+                  <option>Change Order Evidence Agent</option>
+                  <option>Field Report Agent</option>
+                  <option>RFI / Submittal Agent</option>
+                  <option>Schedule Risk Agent</option>
+                  <option>CRM / Follow-Up Agent</option>
+                  <option>Billing / Invoice Follow-Up Agent</option>
+                  <option>Document Intake / Project Knowledge Agent</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="message">What do you want to fix first? *</label>
+                <textarea id="message" name="message" required placeholder="Example: We lose change order backup in texts and emails, then scramble when billing."></textarea>
+              </div>
+              <div class="field">
+                <label for="quiz_result">Quiz result</label>
+                <input id="quiz_result" name="quiz_result" type="text" placeholder="Optional — fills automatically after the quiz" />
+              </div>
+            </form>
+
+            <div class="form-actions">
+              <button class="btn btn-yellow" type="button" id="submitProxy">Send request</button>
+              <a class="btn" href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20workflow%20review">Email instead</a>
+              <div class="form-note">First FormSubmit use may require a one-time email confirmation before lead delivery is fully active.</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="contact-methods"><article class="method-card"><span class="number">01</span><h3>Email</h3><p><a href="mailto:hello@constructionflows.com">hello@constructionflows.com</a></p></article><article class="method-card"><span class="number">02</span><h3>Best fit</h3><p>Specialty contractors and construction teams that want practical AI workflows tied to bids, PM work, documentation, or follow-up.</p></article><article class="method-card"><span class="number">03</span><h3>First call</h3><p>Bring one painful workflow, one sample document/log, and the agent result you want to test first.</p></article></div>
-    </div></section>
+    </section>
   </main>
+
   <footer class="footer"><div class="footer-inner"><span>© ConstructionFlows</span><span>AI drafts. Contractors approve.</span></div></footer>
+
   <script>
     const form = document.getElementById('leadForm');
     const quizResult = document.getElementById('quiz_result');
-    try { const primary = localStorage.getItem('constructionflowsAgentFitPrimary'); const topThree = localStorage.getItem('constructionflowsAgentFitTopThree'); if (primary && !quizResult.value) quizResult.value = topThree || primary; } catch (error) {}
-    document.getElementById('submitProxy').addEventListener('click', () => { if (form.reportValidity()) form.submit(); });
+    try {
+      const primary = localStorage.getItem('constructionflowsAgentFitPrimary');
+      const topThree = localStorage.getItem('constructionflowsAgentFitTopThree');
+      if (primary && !quizResult.value) quizResult.value = topThree || primary;
+    } catch (error) {}
+    document.getElementById('submitProxy').addEventListener('click', () => {
+      if (form.reportValidity()) form.submit();
+    });
   </script>
 </body>
 </html>

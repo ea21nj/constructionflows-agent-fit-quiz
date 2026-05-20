@@ -363,10 +363,54 @@
     .footer { background: var(--black); color: var(--white); padding: 28px 22px; }
     .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 
+
+    .cta-panel {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+    }
+    .cta-copy, .cta-action {
+      background: var(--yellow);
+      padding: 22px;
+    }
+    .cta-copy { border-right: var(--line); }
+    .cta-copy strong {
+      display: block;
+      font-family: var(--headline);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: .86;
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .cta-copy span { color: var(--black); font-weight: 600; line-height: 1.55; }
+    .cta-action { display: flex; align-items: center; justify-content: center; min-width: 260px; }
+    .mini-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 18px;
+    }
+    .mini-proof span {
+      display: inline-flex;
+      align-items: center;
+      border: var(--line);
+      background: var(--white);
+      padding: 8px 10px;
+      margin: 0 -2px -2px 0;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
     @media (max-width: 960px) {
       .nav-links { display: none; }
-      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library { grid-template-columns: 1fr; }
-      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card { border-right: 0; border-bottom: var(--line); }
+      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library, .cta-panel { grid-template-columns: 1fr; }
+      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card, .cta-copy { border-right: 0; border-bottom: var(--line); }
       .spec-card:last-child, .rec-card:last-child, .agent-card:last-child { border-bottom: 0; }
       .options { grid-template-columns: 1fr; }
       .option { border-right: 0; }
@@ -375,6 +419,72 @@
       .result-card:nth-child(2n), .agent-card:nth-child(3n) { border-right: 0; }
       h1 { font-size: clamp(54px, 18vw, 88px); }
       section { padding: 58px 20px; }
+    }
+
+    /* Contact Form Modal */
+    .contact-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contact-modal.active {
+      display: flex;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 1001;
+      background: var(--white);
+      border: var(--line);
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: clamp(20px, 4vw, 44px);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1002;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 120ms ease;
+    }
+
+    .modal-close:hover {
+      background: var(--yellow);
+    }
+
+    @media (max-width: 960px) {
+      .modal-content {
+        max-width: 95vw;
+        padding: 20px;
+      }
+
+      .modal-close {
+        width: 44px;
+        height: 44px;
+      }
     }
   </style>
 </head>
@@ -394,11 +504,26 @@
     <header class="hero">
       <div class="hero-inner">
         <div class="badge">20-question implementation diagnostic</div>
-        <h1>Find the construction AI agent your team should implement first.</h1>
-        <p class="hero-copy">Answer 20 practical questions about bids, RFIs, change orders, field reports, billing, documents, and follow-up. Get a ranked recommendation for the agent workflows most likely to save time, protect margin, and reduce admin drag.</p>
+        <h1>Stop guessing where AI fits in your construction business.</h1>
+        <p class="hero-copy">In about three minutes, answer practical questions about bids, RFIs, change orders, field reports, billing, documents, and follow-up — then get a ranked recommendation for the first agent your team should actually implement.</p>
         <div class="hero-actions">
-          <a class="btn btn-yellow" href="#quiz">Start the quiz</a>
-          <a class="btn" href="#agents">See agent options</a>
+          <a class="btn btn-yellow" href="#quiz">Find my first agent →</a>
+          <a class="btn" href="contact.html">Book a workflow review</a>
+        </div>
+        <div class="mini-proof" aria-label="Quiz proof points">
+          <span>3 minute diagnostic</span>
+          <span>9 agent paths</span>
+          <span>Human approval first</span>
+          <span>Built for contractors</span>
+        </div>
+        <div class="cta-panel">
+          <div class="cta-copy">
+            <strong>Your result becomes a rollout plan.</strong>
+            <span>Not a generic score. You’ll see the agent to start with, why it fits, and the first workflow to test with your team.</span>
+          </div>
+          <div class="cta-action">
+            <a class="btn btn-dark" href="#quiz">Start now</a>
+          </div>
         </div>
         <div class="spec-grid">
           <div class="spec-card">
@@ -406,7 +531,7 @@
             <p>No generic AI hype. The quiz maps real construction bottlenecks to implementable agents: estimator copilot, PM second brain, change order evidence, RFI/submittal tracking, field reporting, schedule risk, CRM follow-up, billing, and document intake.</p>
           </div>
           <div class="spec-card">
-            <div class="spec-title">Output</div>
+            <div class="spec-title">You leave with</div>
             <ul>
               <li>Primary agent recommendation</li>
               <li>Secondary implementation options</li>
