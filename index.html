@@ -385,7 +385,7 @@
       <div class="nav-links">
         <a href="#quiz">Take quiz</a>
         <a href="#agents">Agent types</a>
-        <a href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20Agent%20Fit%20Quiz">Talk to us</a>
+        <a href="contact.html">Contact us</a>
       </div>
     </div>
   </nav>
@@ -449,7 +449,7 @@
           <div class="recommendation" id="implementationGrid"></div>
           <div class="hero-actions">
             <button class="btn btn-yellow" type="button" id="retakeBtn">Retake quiz</button>
-            <a class="btn btn-dark" href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20Agent%20Fit%20Quiz%20Results">Discuss implementation</a>
+            <a class="btn btn-dark" href="contact.html">Discuss implementation</a>
           </div>
         </div>
       </div>
@@ -716,6 +716,10 @@
       }).join('');
 
       const primary = agents[top[0][0]];
+      try {
+        localStorage.setItem('constructionflowsAgentFitPrimary', primary.name);
+        localStorage.setItem('constructionflowsAgentFitTopThree', top.map(([key, score]) => `${agents[key].name}: ${score}`).join(' | '));
+      } catch (error) {}
       implementationGrid.innerHTML = `
         <article class="rec-card"><span class="number">01</span><h3>First workflow</h3><p>${primary.firstWorkflow}</p></article>
         <article class="rec-card"><span class="number">02</span><h3>Rollout rule</h3><p>Begin with read-only inputs and human approval. The agent drafts, organizes, and flags risk; your team approves before anything goes to a customer, GC, owner, or vendor.</p></article>

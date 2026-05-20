@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact ConstructionFlows</title>
+  <meta name="description" content="Contact ConstructionFlows to discuss construction AI agent implementation for estimating, project management, change orders, field reporting, billing, CRM, and document workflows." />
+  <meta property="og:title" content="Contact ConstructionFlows" />
+  <meta property="og:description" content="Tell us where your construction workflow is leaking time or margin. We'll recommend a practical AI agent implementation path." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFB800;
+      --black: #111111;
+      --white: #FFFFFF;
+      --warm: #F2F1ED;
+      --secondary: #555555;
+      --border: #E2E1DC;
+      --radius: 4px;
+      --line: 2px solid var(--black);
+      --body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --headline: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--black);
+      background:
+        linear-gradient(rgba(17,17,17,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17,17,17,.035) 1px, transparent 1px),
+        var(--white);
+      background-size: 32px 32px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,255,255,.95);
+      border-bottom: var(--line);
+    }
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      min-height: 66px;
+      padding: 0 22px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--headline);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      border: var(--line);
+      border-radius: var(--radius);
+      background: var(--yellow);
+      display: grid;
+      place-items: center;
+      font-family: var(--headline);
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .nav-links { display: flex; align-items: stretch; gap: 0; }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-left: var(--line);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .nav-links a:hover { background: var(--yellow); }
+
+    .hero {
+      border-bottom: var(--line);
+      padding: 0 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, transparent 0 49%, rgba(17,17,17,.12) 49% 49.35%, transparent 49.35% 100%),
+        linear-gradient(90deg, rgba(255,184,0,.18), transparent 40%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 68px 0 58px;
+      position: relative;
+    }
+    .badge, .section-kicker, .number, .result-rank, .small-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--yellow);
+      color: var(--black);
+      border: var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    h1, h2, h3, .headline {
+      font-family: var(--headline);
+      text-transform: uppercase;
+      color: var(--black);
+      margin: 0;
+      font-weight: 800;
+    }
+    h1 {
+      max-width: 980px;
+      margin-top: 22px;
+      font-size: clamp(58px, 10vw, 116px);
+      line-height: .82;
+      letter-spacing: -.035em;
+      text-wrap: balance;
+    }
+    .hero-copy {
+      max-width: 780px;
+      margin: 28px 0 0;
+      color: var(--secondary);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius);
+      border: var(--line);
+      padding: 12px 16px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--black); }
+    .btn-yellow { background: var(--yellow); }
+    .btn-dark { background: var(--black); color: var(--white); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .spec-grid {
+      max-width: 1180px;
+      margin: 52px auto 0;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+    }
+    .spec-card {
+      background: var(--white);
+      padding: 22px;
+      border-right: var(--line);
+    }
+    .spec-card:last-child { border-right: 0; }
+    .spec-title {
+      font-family: var(--headline);
+      font-size: 32px;
+      line-height: .9;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .spec-card p, .spec-card li { color: var(--secondary); line-height: 1.6; font-weight: 500; }
+    .spec-card ul { margin: 14px 0 0; padding-left: 18px; }
+
+    section { padding: 74px 22px; border-bottom: var(--line); }
+    section:nth-of-type(odd) { background: var(--warm); }
+    section:nth-of-type(even) { background: var(--white); }
+    .section-inner { max-width: 1180px; margin: 0 auto; }
+    h2 {
+      margin-top: 16px;
+      font-size: clamp(42px, 6.5vw, 78px);
+      line-height: .88;
+      letter-spacing: -.03em;
+      text-wrap: balance;
+    }
+    .section-copy {
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: var(--secondary);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .quiz-shell {
+      margin-top: 38px;
+      border: var(--line);
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 0;
+    }
+    .progress-panel {
+      border-right: var(--line);
+      background: var(--warm);
+      padding: 22px;
+    }
+    .progress-panel .headline { font-size: 34px; line-height: .9; letter-spacing: -.02em; }
+    .progress-bar {
+      margin: 22px 0 16px;
+      height: 18px;
+      border: var(--line);
+      background: var(--white);
+      overflow: hidden;
+    }
+    .progress-fill { height: 100%; width: 0%; background: var(--yellow); transition: width 180ms ease; }
+    .progress-meta { color: var(--secondary); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .score-preview { margin-top: 26px; display: grid; gap: 0; border: var(--line); background: var(--black); }
+    .score-row {
+      background: var(--white);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px;
+      border-bottom: var(--line);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .score-row:last-child { border-bottom: 0; }
+
+    .question-panel { padding: clamp(22px, 4vw, 38px); }
+    .question-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+    .number { border-radius: var(--radius); min-width: 54px; height: 34px; font-family: var(--headline); font-size: 24px; letter-spacing: 0; }
+    .question h3 { font-size: clamp(34px, 5vw, 58px); line-height: .9; letter-spacing: -.025em; max-width: 760px; }
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+      margin-top: 28px;
+    }
+    .option {
+      position: relative;
+      background: var(--white);
+      padding: 18px 18px 18px 54px;
+      min-height: 94px;
+      border-right: var(--line);
+      border-bottom: var(--line);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: var(--secondary);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .option:nth-child(2n) { border-right: 0; }
+    .option:nth-last-child(-n+2) { border-bottom: 0; }
+    .option:hover, .option.selected { background: var(--yellow); color: var(--black); }
+    .option input { position: absolute; opacity: 0; pointer-events: none; }
+    .option-letter {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 25px;
+      height: 25px;
+      border: var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--black);
+      background: var(--white);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .option.selected .option-letter { background: var(--black); color: var(--white); }
+    .quiz-controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; }
+
+    .results { display: none; margin-top: 38px; }
+    .results.show { display: block; }
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+      margin-top: 24px;
+    }
+    .result-card {
+      background: var(--white);
+      padding: 24px;
+      border-right: var(--line);
+      border-bottom: var(--line);
+    }
+    .result-card:nth-child(2n) { border-right: 0; }
+    .result-card h3 { font-size: 42px; line-height: .9; letter-spacing: -.025em; margin-top: 14px; }
+    .result-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
+    .result-card ul { color: var(--secondary); line-height: 1.65; font-weight: 500; padding-left: 18px; }
+    .primary-result { background: var(--yellow); grid-column: 1 / -1; }
+    .primary-result p, .primary-result ul { color: var(--black); }
+    .result-rank { border-radius: var(--radius); }
+    .score-meter { height: 16px; border: var(--line); background: var(--white); margin: 18px 0 10px; }
+    .score-meter span { display: block; height: 100%; width: 0%; background: var(--black); }
+    .primary-result .score-meter span { background: var(--white); }
+    .recommendation {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+      margin-top: 24px;
+    }
+    .rec-card { background: var(--white); padding: 22px; border-right: var(--line); }
+    .rec-card:last-child { border-right: 0; }
+    .rec-card h3 { font-size: 30px; line-height: .95; margin: 10px 0; }
+    .rec-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
+
+    .agent-library {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border: var(--line);
+      background: var(--black);
+      margin-top: 36px;
+    }
+    .agent-card { background: var(--white); padding: 22px; border-right: var(--line); border-bottom: var(--line); }
+    .agent-card:nth-child(3n) { border-right: 0; }
+    .agent-card h3 { font-size: 32px; line-height: .9; margin: 12px 0 10px; }
+    .agent-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
+
+    .footer { background: var(--black); color: var(--white); padding: 28px 22px; }
+    .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library { grid-template-columns: 1fr; }
+      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card { border-right: 0; border-bottom: var(--line); }
+      .spec-card:last-child, .rec-card:last-child, .agent-card:last-child { border-bottom: 0; }
+      .options { grid-template-columns: 1fr; }
+      .option { border-right: 0; }
+      .option:nth-last-child(-n+2) { border-bottom: var(--line); }
+      .option:last-child { border-bottom: 0; }
+      .result-card:nth-child(2n), .agent-card:nth-child(3n) { border-right: 0; }
+      h1 { font-size: clamp(54px, 18vw, 88px); }
+      section { padding: 58px 20px; }
+    }
+
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 0; border: var(--line); background: var(--black); margin-top: 42px; }
+    .contact-panel, .form-panel { background: var(--white); padding: clamp(22px, 4vw, 38px); }
+    .contact-panel { border-right: var(--line); background: var(--warm); }
+    .contact-panel h2, .form-panel h2 { font-size: clamp(42px, 6vw, 72px); line-height: .86; letter-spacing: -.03em; }
+    .contact-panel p, .form-panel p { color: var(--secondary); line-height: 1.65; font-weight: 500; }
+    .lead-specs { display: grid; gap: 0; border: var(--line); background: var(--black); margin-top: 28px; }
+    .lead-spec { background: var(--white); padding: 16px; border-bottom: var(--line); }
+    .lead-spec:last-child { border-bottom: 0; }
+    .lead-spec strong { display: block; font-family: var(--headline); font-size: 28px; line-height: .9; text-transform: uppercase; margin-bottom: 8px; }
+    .lead-spec span { color: var(--secondary); font-weight: 500; line-height: 1.55; }
+    .lead-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: var(--line); background: var(--black); margin-top: 26px; }
+    .field { background: var(--white); padding: 14px; border-right: var(--line); border-bottom: var(--line); }
+    .field:nth-child(2n) { border-right: 0; }
+    .field.full { grid-column: 1 / -1; border-right: 0; }
+    .field label { display: block; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 9px; }
+    .field input, .field select, .field textarea { width: 100%; border: var(--line); border-radius: var(--radius); background: var(--warm); color: var(--black); padding: 12px; font-size: 15px; font-weight: 500; outline: none; }
+    .field textarea { min-height: 132px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { background: var(--yellow); }
+    .form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; align-items: center; }
+    .form-note { color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.5; max-width: 520px; }
+    .contact-methods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: var(--line); background: var(--black); margin-top: 42px; }
+    .method-card { background: var(--white); padding: 22px; border-right: var(--line); }
+    .method-card:last-child { border-right: 0; }
+    .method-card h3 { font-size: 32px; line-height: .9; margin: 12px 0 10px; }
+    .method-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
+    @media (max-width: 960px) { .contact-grid, .lead-form, .contact-methods { grid-template-columns: 1fr; } .contact-panel, .field, .method-card { border-right: 0; border-bottom: var(--line); } .field:nth-child(2n) { border-right: 0; } .method-card:last-child { border-bottom: 0; } }
+
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a class="brand" href="index.html#top"><span class="logo">CF</span><span>ConstructionFlows</span></a><div class="nav-links"><a href="index.html#quiz">Take quiz</a><a href="index.html#agents">Agent types</a><a href="contact.html">Contact us</a></div></div></nav>
+  <main id="top">
+    <header class="hero"><div class="hero-inner"><div class="badge">Lead intake / implementation request</div><h1>Tell us where your construction workflow is leaking time or margin.</h1><p class="hero-copy">Share a few details about your company, current bottleneck, and agent interest. We’ll use it to recommend a practical first implementation path — human-review-first, contractor-friendly, and tied to real operations.</p></div></header>
+    <section><div class="section-inner"><div class="section-kicker">Contact us</div><h2>Book a workflow review.</h2><p class="section-copy">This form captures enough context to turn your quiz result or workflow pain into a concrete AI agent recommendation.</p>
+      <div class="contact-grid">
+        <aside class="contact-panel"><span class="number">01</span><h2>What happens next?</h2><p>We review your role, company type, workflow pain, and any quiz result. Then we suggest the best first agent to test with one live workflow.</p><div class="lead-specs"><div class="lead-spec"><strong>01 / Identify</strong><span>Pinpoint the workflow: bids, RFIs, change orders, field reports, billing, CRM, or document intake.</span></div><div class="lead-spec"><strong>02 / Scope</strong><span>Define the first low-risk workflow where AI drafts, organizes, or flags issues for human approval.</span></div><div class="lead-spec"><strong>03 / Implement</strong><span>Build a simple agent workflow around your existing tools, documents, and approval process.</span></div></div></aside>
+        <div class="form-panel"><span class="number">02</span><h2>Lead details</h2><p>Submissions are sent to <strong>hello@constructionflows.com</strong>. Include your quiz result if you have one.</p>
+          <form class="lead-form" id="leadForm" action="https://formsubmit.co/hello@constructionflows.com" method="POST">
+            <input type="hidden" name="_subject" value="New ConstructionFlows agent-fit lead" /><input type="hidden" name="_template" value="table" /><input type="hidden" name="_captcha" value="false" /><input type="hidden" name="_next" value="https://constructionflows-agent-fit-quiz.vercel.app/thank-you.html" /><input type="hidden" name="source" value="ConstructionFlows Agent Fit Quiz contact page" />
+            <div class="field"><label for="name">Name *</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
+            <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+            <div class="field"><label for="company">Company *</label><input id="company" name="company" type="text" autocomplete="organization" required /></div>
+            <div class="field"><label for="role">Role</label><select id="role" name="role"><option value="">Select role</option><option>Owner / executive</option><option>Estimator</option><option>Project manager</option><option>Superintendent / field leader</option><option>Admin / coordinator</option><option>Other</option></select></div>
+            <div class="field"><label for="company_type">Company type</label><select id="company_type" name="company_type"><option value="">Select company type</option><option>Specialty subcontractor</option><option>General contractor</option><option>Construction manager / owner rep</option><option>Supplier / distributor</option><option>Service or maintenance contractor</option><option>Other</option></select></div>
+            <div class="field"><label for="agent_interest">Agent interest</label><select id="agent_interest" name="agent_interest"><option value="">Select agent</option><option>Estimator Copilot</option><option>PM Second Brain</option><option>Change Order Evidence Agent</option><option>Field Report Agent</option><option>RFI / Submittal Agent</option><option>Schedule Risk Agent</option><option>CRM / Follow-Up Agent</option><option>Billing / Invoice Follow-Up Agent</option><option>Document Intake / Project Knowledge Agent</option><option>Not sure yet</option></select></div>
+            <div class="field full"><label for="quiz_result">Quiz result</label><input id="quiz_result" name="quiz_result" type="text" placeholder="Example: PM Second Brain" /></div>
+            <div class="field full"><label for="biggest_pain">Biggest workflow pain *</label><textarea id="biggest_pain" name="biggest_pain" required placeholder="Example: We lose change order backup in texts and emails, then scramble when billing."></textarea></div>
+            <div class="field full"><label for="tools">Current tools</label><input id="tools" name="current_tools" type="text" placeholder="Example: Procore, monday.com, Google Drive, Gmail, Excel" /></div>
+            <div class="field full"><label for="timeline">Desired timeline</label><select id="timeline" name="timeline"><option value="">Select timeline</option><option>ASAP</option><option>Next 2 weeks</option><option>Next 30 days</option><option>This quarter</option><option>Just researching</option></select></div>
+          </form>
+          <div class="form-actions"><button class="btn btn-yellow" type="button" id="submitProxy">Submit request</button><a class="btn" href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20agent%20implementation">Email instead</a><div class="form-note">By submitting, you agree to be contacted about ConstructionFlows workflows. First FormSubmit use may require email confirmation for delivery.</div></div>
+        </div>
+      </div>
+      <div class="contact-methods"><article class="method-card"><span class="number">01</span><h3>Email</h3><p><a href="mailto:hello@constructionflows.com">hello@constructionflows.com</a></p></article><article class="method-card"><span class="number">02</span><h3>Best fit</h3><p>Specialty contractors and construction teams that want practical AI workflows tied to bids, PM work, documentation, or follow-up.</p></article><article class="method-card"><span class="number">03</span><h3>First call</h3><p>Bring one painful workflow, one sample document/log, and the agent result you want to test first.</p></article></div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="footer-inner"><span>© ConstructionFlows</span><span>AI drafts. Contractors approve.</span></div></footer>
+  <script>
+    const form = document.getElementById('leadForm');
+    const quizResult = document.getElementById('quiz_result');
+    try { const primary = localStorage.getItem('constructionflowsAgentFitPrimary'); const topThree = localStorage.getItem('constructionflowsAgentFitTopThree'); if (primary && !quizResult.value) quizResult.value = topThree || primary; } catch (error) {}
+    document.getElementById('submitProxy').addEventListener('click', () => { if (form.reportValidity()) form.submit(); });
+  </script>
+</body>
+</html>
