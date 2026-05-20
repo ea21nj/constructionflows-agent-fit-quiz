@@ -205,6 +205,8 @@
     section { padding: 74px 22px; border-bottom: var(--line); }
     section:nth-of-type(odd) { background: var(--warm); }
     section:nth-of-type(even) { background: var(--white); }
+    section.tab-only { display: none; }
+    section.tab-only.is-visible { display: block; }
     .section-inner { max-width: 1180px; margin: 0 auto; }
     h2 {
       margin-top: 16px;
@@ -516,7 +518,7 @@
       </div>
     </section>
 
-    <section id="agents">
+    <section id="agents" class="tab-only" aria-hidden="true">
       <div class="section-inner">
         <div class="section-kicker">Agent library</div>
         <h2>The quiz recommends from nine practical construction agent types.</h2>
@@ -695,6 +697,7 @@
     const resultGrid = document.getElementById('resultGrid');
     const implementationGrid = document.getElementById('implementationGrid');
     const resultsIntro = document.getElementById('resultsIntro');
+    const agentsSection = document.getElementById('agents');
 
     function scoreAnswers() {
       const scores = Object.fromEntries(Object.keys(agents).map(key => [key, 0]));
@@ -824,7 +827,36 @@
       </article>
     `).join('');
 
+    function updateAgentLibraryVisibility(scrollToLibrary = false) {
+      const shouldShow = window.location.hash === '#agents';
+      agentsSection.classList.toggle('is-visible', shouldShow);
+      agentsSection.setAttribute('aria-hidden', String(!shouldShow));
+      if (shouldShow && scrollToLibrary) {
+        requestAnimationFrame(() => agentsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', event => {
+        const targetHash = link.getAttribute('href');
+        if (targetHash === '#agents') {
+          event.preventDefault();
+          history.pushState(null, '', targetHash);
+          updateAgentLibraryVisibility(true);
+          return;
+        }
+
+        if (agentsSection.classList.contains('is-visible')) {
+          agentsSection.classList.remove('is-visible');
+          agentsSection.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    window.addEventListener('hashchange', () => updateAgentLibraryVisibility(window.location.hash === '#agents'));
+
     renderQuestion();
+    updateAgentLibraryVisibility(window.location.hash === '#agents');
 
   </script>
 
