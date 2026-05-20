@@ -765,5 +765,32 @@
 
     renderQuestion();
   </script>
+
+  <!-- Contact Form Modal -->
+  <div class="contact-modal" id="contactModal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="contactClose">×</button>
+      <div class="contact-grid">
+        <aside class="contact-panel"><span class="number">01</span><h2>What happens next?</h2><p>We review your role, company type, workflow pain, and any quiz result. Then we suggest the best first agent to test with one live workflow.</p><div class="lead-specs"><div class="lead-spec"><strong>01 / Identify</strong><span>Pinpoint the workflow: bids, RFIs, change orders, field reports, billing, CRM, or document intake.</span></div><div class="lead-spec"><strong>02 / Scope</strong><span>Define the first low-risk workflow where AI drafts, organizes, or flags issues for human approval.</span></div><div class="lead-spec"><strong>03 / Implement</strong><span>Build a simple agent workflow around your existing tools, documents, and approval process.</span></div></div></aside>
+        <div class="form-panel"><span class="number">02</span><h2>Lead details</h2><p>Submissions are sent to <strong>hello@constructionflows.com</strong>. Include your quiz result if you have one.</p>
+          <form class="lead-form" id="modalLeadForm" action="https://formsubmit.co/hello@constructionflows.com" method="POST">
+            <input type="hidden" name="_subject" value="New ConstructionFlows agent-fit lead" /><input type="hidden" name="_template" value="table" /><input type="hidden" name="_captcha" value="false" /><input type="hidden" name="_next" value="https://constructionflows-agent-fit-quiz.vercel.app/thank-you.html" /><input type="hidden" name="source" value="ConstructionFlows Agent Fit Quiz contact modal" />
+            <div class="field"><label for="modal-name">Name *</label><input id="modal-name" name="name" type="text" autocomplete="name" required /></div>
+            <div class="field"><label for="modal-email">Email *</label><input id="modal-email" name="email" type="email" autocomplete="email" required /></div>
+            <div class="field"><label for="modal-company">Company *</label><input id="modal-company" name="company" type="text" autocomplete="organization" required /></div>
+            <div class="field"><label for="modal-role">Role</label><select id="modal-role" name="role"><option value="">Select role</option><option>Owner / executive</option><option>Estimator</option><option>Project manager</option><option>Superintendent / field leader</option><option>Admin / coordinator</option><option>Other</option></select></div>
+            <div class="field"><label for="modal-company-type">Company type</label><select id="modal-company-type" name="company_type"><option value="">Select company type</option><option>Specialty subcontractor</option><option>General contractor</option><option>Construction manager / owner rep</option><option>Supplier / distributor</option><option>Service or maintenance contractor</option><option>Other</option></select></div>
+            <div class="field"><label for="modal-agent-interest">Agent interest</label><select id="modal-agent-interest" name="agent_interest"><option value="">Select agent</option><option>Estimator Copilot</option><option>PM Second Brain</option><option>Change Order Evidence Agent</option><option>Field Report Agent</option><option>RFI / Submittal Agent</option><option>Schedule Risk Agent</option><option>CRM / Follow-Up Agent</option><option>Billing / Invoice Follow-Up Agent</option><option>Document Intake / Project Knowledge Agent</option><option>Not sure yet</option></select></div>
+            <div class="field full"><label for="modal-quiz-result">Quiz result</label><input id="modal-quiz-result" name="quiz_result" type="text" placeholder="Example: PM Second Brain" /></div>
+            <div class="field full"><label for="modal-biggest-pain">Biggest workflow pain *</label><textarea id="modal-biggest-pain" name="biggest_pain" required placeholder="Example: We lose change order backup in texts and emails, then scramble when billing."></textarea></div>
+            <div class="field full"><label for="modal-tools">Current tools</label><input id="modal-tools" name="current_tools" type="text" placeholder="Example: Procore, monday.com, Google Drive, Gmail, Excel" /></div>
+            <div class="field full"><label for="modal-timeline">Desired timeline</label><select id="modal-timeline" name="timeline"><option value="">Select timeline</option><option>ASAP</option><option>Next 2 weeks</option><option>Next 30 days</option><option>This quarter</option><option>Just researching</option></select></div>
+          </form>
+          <div class="form-actions"><button class="btn btn-yellow" type="button" id="modalSubmitProxy">Submit request</button><a class="btn" href="mailto:hello@constructionflows.com?subject=ConstructionFlows%20agent%20implementation">Email instead</a><div class="form-note">By submitting, you agree to be contacted about ConstructionFlows workflows. First FormSubmit use may require email confirmation for delivery.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
