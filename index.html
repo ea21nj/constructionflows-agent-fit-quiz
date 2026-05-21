@@ -358,6 +358,28 @@
       resize: vertical;
     }
     .open-response:focus { background: var(--yellow); }
+    .keyboard-note {
+      margin-top: 18px;
+      color: var(--secondary);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .keyboard-note kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      padding: 4px 8px;
+      border: 2px solid var(--black);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 2px 2px 0 var(--black);
+      font: inherit;
+      line-height: 1;
+    }
     .quiz-controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
 
     .results { display: none; margin-top: 38px; }
@@ -640,6 +662,7 @@
         </div>
         <h3>${item.q}</h3>
         <p class="question-context">${item.why}</p>
+        <p class="keyboard-note"><kbd>Enter</kbd> goes to the next question after you answer.</p>
         ${isText ? `
           <textarea class="open-response" id="openResponse" placeholder="${item.placeholder || 'Type your response...'}">${textAnswers[current]}</textarea>
         ` : `
