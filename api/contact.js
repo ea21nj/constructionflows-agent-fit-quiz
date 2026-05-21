@@ -1,6 +1,6 @@
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const TO_EMAIL = 'hello@constructionflows.com';
-const FROM_EMAIL = process.env.RESEND_FROM || 'ConstructionFlows <hello@constructionflows.com>';
+const FROM_EMAIL = process.env.RESEND_FROM || 'Construct Flows <hello@constructionflows.com>';
 
 function escapeHtml(value = '') {
   return String(value)
@@ -23,8 +23,8 @@ function field(label, value) {
 function buildEmailHtml(data) {
   return `
     <div style="font-family:Inter,Arial,sans-serif;color:#111;line-height:1.5;">
-      <h1 style="font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:-0.02em;">New ConstructionFlows workflow review request</h1>
-      <p>A new lead submitted the ConstructionFlows request form.</p>
+      <h1 style="font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:-0.02em;">New Construct Flows workflow review request</h1>
+      <p>A new lead submitted the Construct Flows request form.</p>
       <table style="border-collapse:collapse;width:100%;max-width:720px;">
         ${field('Name', data.name)}
         ${field('Email', data.email)}
@@ -39,7 +39,7 @@ function buildEmailHtml(data) {
 
 function buildText(data) {
   return [
-    'New ConstructionFlows workflow review request',
+    'New Construct Flows workflow review request',
     '',
     `Name: ${data.name || '—'}`,
     `Email: ${data.email || '—'}`,
@@ -76,9 +76,9 @@ module.exports = async function handler(req, res) {
     from: FROM_EMAIL,
     to: [TO_EMAIL],
     reply_to: email,
-    subject: `New ConstructionFlows workflow review lead: ${name}`,
-    html: buildEmailHtml({ ...data, name, email, message, source: data.source || 'ConstructionFlows contact page' }),
-    text: buildText({ ...data, name, email, message, source: data.source || 'ConstructionFlows contact page' })
+    subject: `New Construct Flows workflow review lead: ${name}`,
+    html: buildEmailHtml({ ...data, name, email, message, source: data.source || 'Construct Flows contact page' }),
+    text: buildText({ ...data, name, email, message, source: data.source || 'Construct Flows contact page' })
   };
 
   try {
