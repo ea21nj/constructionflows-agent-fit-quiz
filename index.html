@@ -877,14 +877,7 @@
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    prevBtn.addEventListener('click', () => {
-      if (current > 0) {
-        current -= 1;
-        renderQuestion();
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
+    function goToNextQuestion() {
       if (!isAnswered(current)) return;
       if (current < questions.length - 1) {
         current += 1;
@@ -892,6 +885,33 @@
       } else {
         showResults();
       }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 0) {
+        current -= 1;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener('click', goToNextQuestion);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' || event.shiftKey || event.metaKey || event.ctrlKey || event.altKey) return;
+      if (results.classList.contains('show')) return;
+
+      const activeElement = document.activeElement;
+      const isInsideQuiz = quizShell.contains(activeElement);
+      const isBodyFocused = activeElement === document.body;
+      if (!isInsideQuiz && !isBodyFocused) return;
+      if (activeElement === prevBtn) return;
+
+      if (event.target?.tagName === 'TEXTAREA') {
+        textAnswers[current] = event.target.value;
+      }
+      if (!isAnswered(current)) return;
+      event.preventDefault();
+      goToNextQuestion();
     });
 
     downloadReportBtn.addEventListener('click', downloadReport);
