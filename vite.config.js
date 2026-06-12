@@ -7,7 +7,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         contact: resolve(__dirname, 'contact.html'),
-        thankYou: resolve(__dirname, 'thank-you.html')
+        thankYou: resolve(__dirname, 'thank-you.html'),
+        arcade: resolve(__dirname, 'arcade.html')
       }
     }
   }
