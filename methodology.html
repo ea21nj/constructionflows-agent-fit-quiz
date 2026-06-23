@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONSTRUCTIONFLOWS — Scoring Methodology</title>
+  <meta name="description" content="How the CONSTRUCTIONFLOWS operational maturity assessment is scored — eight categories, five profiles, and what each result means." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DIN+Condensed:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F6F4EF;
+      --white: #FFFFFF;
+      --black: #111111;
+      --gray-muted: #686868;
+      --gray-border: #E5E5E5;
+      --gray-light: #F1F1F1;
+      --status-healthy: #2E7D32;
+      --status-moderate: #F5A623;
+      --status-gap: #F97316;
+      --status-critical: #D92D20;
+      --status-unknown: #9CA3AF;
+      --line: 1px solid var(--gray-border);
+      --body: 'Inter', system-ui, sans-serif;
+      --display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+      --headline: 'DIN Condensed', Impact, 'Arial Narrow', sans-serif;
+      --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      color: var(--black);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(246,244,239,0.97);
+      border-bottom: var(--line);
+      backdrop-filter: blur(8px);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      min-height: 60px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--black);
+    }
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid var(--black);
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; align-items: stretch; }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-left: var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      transition: color 100ms;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--white);
+      border-bottom: var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-blueprint {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--gray-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gray-border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 72px 80px 64px;
+      position: relative;
+      z-index: 1;
+    }
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(52px, 7vw, 88px);
+      line-height: 0.91;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: var(--black);
+      max-width: 800px;
+    }
+    .hero-sub {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-muted);
+      max-width: 560px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 32px;
+      border: var(--line);
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 24px;
+      transition: background 100ms;
+    }
+    .hero-cta:hover { background: #333; }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 72px 80px;
+    }
+
+    /* Sub-header with rule */
+    .sub-header {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sub-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-border);
+    }
+
+    /* ── SCORING MECHANICS ── */
+    .mechanics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+      margin-bottom: 64px;
+    }
+    .mechanic-item {
+      background: var(--white);
+      padding: 24px;
+      border-right: var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mechanic-item:last-child { border-right: 0; }
+    .mechanic-num {
+      font-family: var(--display);
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -1px;
+      color: var(--black);
+    }
+    .mechanic-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+    }
+    .mechanic-note {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--gray-muted);
+    }
+
+    /* ── HOW SCORING WORKS ── */
+    .logic-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+      margin-bottom: 64px;
+    }
+    .logic-step {
+      background: var(--white);
+      padding: 28px;
+      border-right: var(--line);
+    }
+    .logic-step:last-child { border-right: 0; }
+    .logic-step-num {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      border: var(--line);
+      display: inline-flex;
+      padding: 4px 8px;
+      margin-bottom: 16px;
+    }
+    .logic-step-title {
+      font-family: var(--headline);
+      font-size: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .logic-step-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--gray-muted);
+    }
+
+    /* ── CATEGORIES ── */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+      margin-bottom: 64px;
+    }
+    .category-card {
+      background: var(--white);
+      padding: 24px;
+      border-right: var(--line);
+      border-bottom: var(--line);
+    }
+    .category-card:nth-child(4n) { border-right: 0; }
+    .category-card:nth-child(n+5) { border-bottom: 0; }
+    .category-num {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      margin-bottom: 12px;
+    }
+    .category-name {
+      font-family: var(--headline);
+      font-size: 22px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .category-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--gray-muted);
+      margin-bottom: 14px;
+    }
+    .category-questions {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--status-unknown);
+      border-top: var(--line);
+      padding-top: 12px;
+    }
+
+    /* ── PROFILES ── */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+    }
+    .profile-card {
+      background: var(--white);
+      padding: 24px;
+      border-right: var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-card:last-child { border-right: 0; }
+    .profile-range {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--gray-muted);
+      border: var(--line);
+      display: inline-flex;
+      padding: 4px 8px;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+    .profile-name {
+      font-family: var(--headline);
+      font-size: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    .profile-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--gray-muted);
+      flex: 1;
+    }
+    .profile-priority {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .profile-priority-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      margin-bottom: 4px;
+    }
+    .profile-priority-item {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--gray-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .profile-priority-item::before {
+      content: '→';
+      flex-shrink: 0;
+      color: var(--status-gap);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--black); color: var(--white); border-top: var(--line); }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 56px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+      transition: color 100ms;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-inner, .hero-inner, .content, .footer-inner { padding-left: 40px; padding-right: 40px; }
+    }
+    @media (max-width: 768px) {
+      .nav-inner, .hero-inner, .content, .footer-inner { padding-left: 24px; padding-right: 24px; }
+      .mechanics-grid { grid-template-columns: repeat(2, 1fr); }
+      .mechanic-item:nth-child(2) { border-right: 0; }
+      .mechanic-item:nth-child(3) { border-top: var(--line); }
+      .logic-row { grid-template-columns: 1fr; }
+      .logic-step { border-right: 0; border-bottom: var(--line); }
+      .logic-step:last-child { border-bottom: 0; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .category-card:nth-child(2n) { border-right: 0; }
+      .category-card:nth-child(n+5) { border-bottom: var(--line); }
+      .category-card:nth-child(n+7) { border-bottom: 0; }
+      .profiles-grid { grid-template-columns: 1fr; }
+      .profile-card { border-right: 0; border-bottom: var(--line); }
+      .profile-card:last-child { border-bottom: 0; }
+    }
+    @media (max-width: 600px) {
+      .nav-links a:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">CF</span>
+        <span>Constructionflows</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#assessment">Assessment</a>
+        <a href="methodology.html" class="active">Methodology</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-blueprint"></div>
+    <div class="hero-inner">
+      <div class="section-kicker">Scoring methodology</div>
+      <h1>Eight categories. Five maturity levels.</h1>
+      <p class="hero-sub">Every score is derived from how your answers map to eight operational categories. Here is exactly how the calculation works and what each result means.</p>
+      <a class="hero-cta" href="index.html#assessment">Take the assessment →</a>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- How the score is built -->
+    <div class="sub-header">Assessment structure</div>
+    <div class="mechanics-grid">
+      <div class="mechanic-item">
+        <span class="mechanic-num">27</span>
+        <span class="mechanic-label">Total questions</span>
+        <span class="mechanic-note">Across 9 workflow sections. Most questions are scored 1–4 based on your answer.</span>
+      </div>
+      <div class="mechanic-item">
+        <span class="mechanic-num">8</span>
+        <span class="mechanic-label">Categories scored</span>
+        <span class="mechanic-note">Each question maps to one or more categories. Some questions count toward three categories simultaneously.</span>
+      </div>
+      <div class="mechanic-item">
+        <span class="mechanic-num">2</span>
+        <span class="mechanic-label">Open text questions</span>
+        <span class="mechanic-note">Captured for context and used in your downloadable report. They do not affect your numerical score.</span>
+      </div>
+      <div class="mechanic-item">
+        <span class="mechanic-num">5</span>
+        <span class="mechanic-label">Maturity profiles</span>
+        <span class="mechanic-note">Your overall percentage score maps to one of five operational states, each with a specific priority set.</span>
+      </div>
+    </div>
+
+    <!-- Scoring logic -->
+    <div class="sub-header">How the score is calculated</div>
+    <div class="logic-row">
+      <div class="logic-step">
+        <span class="logic-step-num">Step 01</span>
+        <div class="logic-step-title">Answer scoring</div>
+        <div class="logic-step-desc">Each multiple-choice question is scored 1–4. A score of 4 indicates a strong, mature workflow. A score of 1 indicates a reactive or invisible process. The exact scoring reflects the operational consequence of each answer — not all 1s and 4s are equal in weight across categories.</div>
+      </div>
+      <div class="logic-step">
+        <span class="logic-step-num">Step 02</span>
+        <div class="logic-step-title">Category aggregation</div>
+        <div class="logic-step-desc">Each question maps to one, two, or three categories. Your category score is the sum of earned points divided by the maximum possible points for that category, expressed as a percentage. A category with fewer contributing questions is not penalised — the percentage normalises it.</div>
+      </div>
+      <div class="logic-step">
+        <span class="logic-step-num">Step 03</span>
+        <div class="logic-step-title">Overall maturity score</div>
+        <div class="logic-step-desc">Your overall score is the total earned points across all scored questions divided by the total possible points — giving a single percentage that drives your maturity profile. The five profiles have fixed score thresholds: 0%, 45%, 62%, 78%, and 90%.</div>
+      </div>
+    </div>
+
+    <!-- 8 categories -->
+    <div class="sub-header">What we measure</div>
+    <div class="categories-grid">
+      <div class="category-card">
+        <div class="category-num">01</div>
+        <div class="category-name">Visibility</div>
+        <div class="category-desc">Can leadership see what is really happening before it becomes a surprise? Covers pipeline clarity, job status, and real-time operational awareness.</div>
+        <div class="category-questions">Contributes to 7 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">02</div>
+        <div class="category-name">Standardization</div>
+        <div class="category-desc">Do teams follow a consistent process, or does every person run their own version? Covers proposal templates, intake workflows, and process variability.</div>
+        <div class="category-questions">Contributes to 9 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">03</div>
+        <div class="category-name">Accountability</div>
+        <div class="category-desc">Is ownership clear when a task, deal, handoff, or follow-up stalls? Covers escalation paths, ownership of overdue work, and pipeline accuracy.</div>
+        <div class="category-questions">Contributes to 5 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">04</div>
+        <div class="category-name">Scalability</div>
+        <div class="category-desc">Can the process grow without relying on hero employees and tribal knowledge? Covers documentation, automation readiness, and process independence from individuals.</div>
+        <div class="category-questions">Contributes to 8 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">05</div>
+        <div class="category-name">Forecast Reliability</div>
+        <div class="category-desc">Can revenue and workload be predicted with enough confidence to plan? Covers forecast accuracy, visibility window, and the causes of forecast misses.</div>
+        <div class="category-questions">Contributes to 5 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">06</div>
+        <div class="category-name">Operational Readiness</div>
+        <div class="category-desc">Can operations execute cleanly on what sales promised? Covers sales-to-ops handoff quality, scope documentation, and pre-close ops involvement.</div>
+        <div class="category-questions">Contributes to 6 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">07</div>
+        <div class="category-name">Knowledge Retention</div>
+        <div class="category-desc">Does context survive turnover, vacations, overload, and handoffs? Covers where decisions are stored, how easy history is to access, and knowledge portability.</div>
+        <div class="category-questions">Contributes to 6 questions</div>
+      </div>
+      <div class="category-card">
+        <div class="category-num">08</div>
+        <div class="category-name">Customer Experience</div>
+        <div class="category-desc">Does the process create trust, clarity, and speed for customers? Covers friction points, repeated information requests, and consistency across reps.</div>
+        <div class="category-questions">Contributes to 5 questions</div>
+      </div>
+    </div>
+
+    <!-- 5 profiles -->
+    <div class="sub-header">What your score means</div>
+    <div class="profiles-grid">
+      <div class="profile-card">
+        <span class="profile-range">0 – 44%</span>
+        <div class="profile-name">Reactive &amp; Tribal</div>
+        <div class="profile-desc">The workflow depends heavily on people remembering, chasing, and interpreting context. Visibility is limited, ownership is inconsistent, and leadership typically sees problems after they have already affected customers or operations.</div>
+        <div class="profile-priority">
+          <div class="profile-priority-label">Where to start</div>
+          <div class="profile-priority-item">Make ownership explicit</div>
+          <div class="profile-priority-item">Create one source of truth for active jobs</div>
+          <div class="profile-priority-item">Document the sales-to-ops handoff</div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <span class="profile-range">45 – 61%</span>
+        <div class="profile-name">Growing but Fragmented</div>
+        <div class="profile-desc">The business has working habits, but they vary by person, team, or project. Some information is visible, some lives in inboxes and spreadsheets, and follow-up depends too much on individual discipline.</div>
+        <div class="profile-priority">
+          <div class="profile-priority-label">Where to start</div>
+          <div class="profile-priority-item">Standardize the highest-friction workflow</div>
+          <div class="profile-priority-item">Define escalation rules for stalled tasks</div>
+          <div class="profile-priority-item">Clean up lead and proposal tracking</div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <span class="profile-range">62 – 77%</span>
+        <div class="profile-name">Structured but Siloed</div>
+        <div class="profile-desc">The core process exists, but information still gets trapped between departments, systems, or roles. Forecasting, customer history, and operational readiness may look fine until a handoff gets tested.</div>
+        <div class="profile-priority">
+          <div class="profile-priority-label">Where to start</div>
+          <div class="profile-priority-item">Tighten sales-to-ops handoff requirements</div>
+          <div class="profile-priority-item">Connect decision history to pipeline stages</div>
+          <div class="profile-priority-item">Measure forecast misses by cause</div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <span class="profile-range">78 – 89%</span>
+        <div class="profile-name">Connected Operations</div>
+        <div class="profile-desc">The workflow is mostly visible and repeatable. The biggest opportunity is reducing remaining exceptions, improving forecast confidence, and turning strong individual habits into a scalable operating system.</div>
+        <div class="profile-priority">
+          <div class="profile-priority-label">Where to start</div>
+          <div class="profile-priority-item">Reduce process exceptions</div>
+          <div class="profile-priority-item">Improve cross-team reporting</div>
+          <div class="profile-priority-item">Automate the cleanest repetitive workflows</div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <span class="profile-range">90 – 100%</span>
+        <div class="profile-name">Operationally Mature</div>
+        <div class="profile-desc">The process is visible, owned, and repeatable. Leadership can see reality, teams know what happens next, and customer experience is less dependent on individual heroics.</div>
+        <div class="profile-priority">
+          <div class="profile-priority-label">Where to start</div>
+          <div class="profile-priority-item">Benchmark leading indicators</div>
+          <div class="profile-priority-item">Automate low-risk admin tasks</div>
+          <div class="profile-priority-item">Use workflow data to coach and plan capacity</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">Constructionflows</span>
+      <div class="footer-links">
+        <a href="index.html#assessment">Assessment</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="contact.html">Contact</a>
+        <a href="mailto:hello@constructionflows.com">hello@constructionflows.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

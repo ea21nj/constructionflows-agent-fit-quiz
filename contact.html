@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Construct Flows</title>
-  <meta name="description" content="Contact Construct Flows for a practical construction workflow review." />
-  <meta property="og:title" content="Contact Construct Flows" />
-  <meta property="og:description" content="Tell us your biggest workflow bottleneck and we’ll recommend where to improve first." />
+  <title>Contact — CONSTRUCTIONFLOWS</title>
+  <meta name="description" content="Tell us your biggest workflow bottleneck. We'll recommend where to improve first." />
+  <meta property="og:title" content="Contact — CONSTRUCTIONFLOWS" />
+  <meta property="og:description" content="Tell us your biggest workflow bottleneck and we'll recommend where to improve first." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DIN+Condensed:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #F6F4EF;
@@ -24,18 +24,17 @@
       --status-gap: #F97316;
       --status-critical: #D92D20;
       --status-unknown: #9CA3AF;
-      --radius: 4px;
+      --radius: 2px;
       --line: 1px solid var(--gray-border);
-      --body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --body: 'Inter', system-ui, sans-serif;
       --display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
-      --headline: 'DIN Condensed', Impact, 'Arial Narrow', sans-serif;
-      --mono: 'IBM Plex Mono', monospace;
+      --mono: 'IBM Plex Mono', 'Courier New', monospace;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
       font-family: var(--body);
       color: var(--black);
       background: var(--bg);
@@ -46,563 +45,947 @@
     a { color: inherit; text-decoration: none; }
     button, input, textarea, select { font: inherit; }
 
+    /* ── NAV ── */
     .nav {
       position: sticky;
       top: 0;
-      z-index: 30;
-      background: rgba(246,244,239,.98);
+      z-index: 40;
+      background: rgba(246,244,239,0.97);
       border-bottom: var(--line);
+      backdrop-filter: blur(8px);
     }
     .nav-inner {
-      max-width: 1180px;
+      max-width: 1280px;
       margin: 0 auto;
+      padding: 0 80px;
       display: flex;
       align-items: stretch;
       justify-content: space-between;
-      min-height: 66px;
-      padding: 0 22px;
+      min-height: 60px;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-family: var(--headline);
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: .02em;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
       white-space: nowrap;
+      color: var(--black);
     }
-    .logo {
-      width: 36px;
-      height: 36px;
-      border: 2px solid var(--black);
-      border-radius: var(--radius);
-      background: transparent;
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid var(--black);
       display: grid;
       place-items: center;
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--black);
+      letter-spacing: 0.5px;
     }
-    .nav-links { display: flex; align-items: stretch; gap: 0; }
+    .nav-links {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
     .nav-links a {
       display: flex;
       align-items: center;
-      padding: 0 16px;
-      border-left: 1px solid var(--gray-border);
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--gray-muted);
-      transition: color 120ms ease;
-    }
-    .nav-links a:hover { color: var(--black); }
-
-    .hero {
-      border-bottom: 1px solid var(--gray-border);
-      padding: 0 22px;
-      position: relative;
-      overflow: hidden;
-      background: var(--white);
-    }
-    .hero-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 68px 0 58px;
-      position: relative;
-    }
-    .badge, .section-kicker, .number, .result-rank, .small-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      color: var(--gray-muted);
-      border: 1px solid var(--gray-border);
-      border-radius: 2px;
-      padding: 6px 10px;
+      padding: 0 20px;
+      border-left: var(--line);
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      transition: color 100ms;
     }
-    h1, h2, h3, .headline {
-      font-family: var(--display);
+    .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--white);
+      border-bottom: var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-blueprint {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--gray-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gray-border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 80px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 0;
+      align-items: stretch;
+      border-left: var(--line);
+      border-right: var(--line);
+    }
+    .hero-left {
+      padding: 72px 48px 72px 0;
+      border-right: var(--line);
+    }
+    .hero-right {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+    }
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
       text-transform: uppercase;
-      color: var(--black);
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: -1px;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      border: var(--line);
+      padding: 6px 10px;
+      margin-bottom: 28px;
+    }
+    .label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--status-healthy);
+      flex-shrink: 0;
     }
     h1 {
       font-family: var(--display);
-      max-width: 980px;
-      margin-top: 22px;
-      font-size: clamp(58px, 10vw, 92px);
-      line-height: 0.92;
+      font-size: clamp(62px, 8.5vw, 100px);
+      line-height: 0.91;
       letter-spacing: -1px;
-      text-wrap: balance;
+      text-transform: uppercase;
+      color: var(--black);
+      max-width: 700px;
     }
-    .hero-copy {
-      max-width: 780px;
-      margin: 28px 0 0;
-      color: var(--gray-muted);
+    .hero-sub {
+      margin-top: 28px;
       font-size: 16px;
       line-height: 1.7;
-      font-weight: 400;
+      color: var(--gray-muted);
+      max-width: 560px;
     }
-    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 32px;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-muted);
+      border: var(--line);
+      background: var(--white);
+      padding: 5px 9px;
+    }
+
+    /* Hero right: operational card fills the full panel */
+    .op-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+    .op-card-header {
+      border-bottom: var(--line);
+      padding: 14px 20px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .op-card-header span:last-child {
+      color: var(--status-healthy);
+    }
+    .op-card-row {
+      padding: 16px 20px;
+      border-bottom: var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+    .op-card-row:last-child { border-bottom: 0; }
+    .op-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+    }
+    .op-value {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: 0.5px;
+    }
+    .op-value.healthy { color: var(--status-healthy); }
+    .op-divider {
+      height: 1px;
+      background: var(--gray-border);
+      margin: 0;
+    }
+
+    /* ── CONTENT LAYOUT ── */
+    .content-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 80px;
+      border-left: var(--line);
+      border-right: var(--line);
+    }
+
+    /* ── PROCESS STRIP ── */
+    .process-strip {
+      padding: 64px 0;
+      border-bottom: var(--line);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+      margin-top: 36px;
+    }
+    .process-card {
+      background: var(--white);
+      padding: 28px;
+      border-right: var(--line);
+    }
+    .process-card:last-child { border-right: 0; }
+    .process-num {
+      font-family: var(--display);
+      font-size: 64px;
+      line-height: 1;
+      color: var(--gray-border);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .process-title {
+      font-family: var(--display);
+      font-size: 28px;
+      line-height: 0.95;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .process-body {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--gray-muted);
+    }
+    .process-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--status-healthy);
+      border: 1px solid var(--status-healthy);
+      padding: 4px 8px;
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section {
+      padding: 72px 0;
+      border-bottom: var(--line);
+    }
+    .section-header {
+      margin-bottom: 40px;
+    }
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .section-sub {
+      max-width: 580px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--gray-muted);
+      margin-top: 16px;
+    }
+    .section-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--gray-border);
+      margin-bottom: 48px;
+    }
+
+    /* ── TWO-COLUMN CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+    }
+    .contact-info {
+      background: var(--bg);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .contact-info-header {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      padding-bottom: 20px;
+      border-bottom: var(--line);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .info-num {
+      font-family: var(--display);
+      font-size: 80px;
+      line-height: 1;
+      color: var(--gray-border);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .info-title {
+      font-family: var(--display);
+      font-size: 36px;
+      line-height: 0.92;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .info-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-muted);
+      margin-bottom: 28px;
+    }
+    .info-block {
+      border: var(--line);
+      background: var(--white);
+      margin-bottom: 10px;
+    }
+    .info-block-header {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      padding: 8px 12px;
+      border-bottom: var(--line);
+    }
+    .info-block-body {
+      padding: 12px;
+      font-size: 13px;
+      color: var(--black);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .info-block-body a {
+      color: var(--black);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+    .info-block-body a:hover { text-decoration: underline; }
+    .workflow-list {
+      list-style: none;
+      margin-top: 8px;
+      display: grid;
+      gap: 0;
+    }
+    .workflow-list li {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-muted);
+      padding: 7px 12px;
+      border-bottom: var(--line);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .workflow-list li:last-child { border-bottom: 0; }
+    .workflow-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gray-muted);
+      flex-shrink: 0;
+    }
+
+    /* ── FORM PANEL ── */
+    .form-panel {
+      background: var(--white);
+      padding: 36px;
+    }
+    .form-panel-header {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      padding-bottom: 20px;
+      border-bottom: var(--line);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .required-note {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--gray-muted);
+    }
+
+    .lead-form {
+      display: grid;
+      gap: 0;
+      border: var(--line);
+      background: var(--gray-border);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .field {
+      background: var(--bg);
+      padding: 0;
+      border-bottom: var(--line);
+      border-right: var(--line);
+      position: relative;
+    }
+    .field:last-child,
+    .field.full {
+      border-right: 0;
+    }
+    .form-row .field:last-child {
+      border-right: 0;
+    }
+    .field.full {
+      grid-column: 1 / -1;
+    }
+    .field label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-muted);
+      padding: 10px 14px 0;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      display: block;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--black);
+      padding: 6px 14px 12px;
+      font-size: 14px;
+      font-weight: 400;
+      outline: none;
+      transition: background 120ms;
+      appearance: none;
+    }
+    .field select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23686868'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 32px;
+    }
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+    .field:focus-within {
+      background: var(--white);
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+    }
+    .field-focus-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--black);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 150ms ease;
+    }
+    .field:focus-within .field-focus-line { transform: scaleX(1); }
+
+    .form-actions {
+      padding: 20px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      border-radius: var(--radius);
-      border: 1px solid var(--gray-border);
-      padding: 11px 18px;
+      border: var(--line);
+      padding: 12px 22px;
       background: var(--white);
       color: var(--black);
-      font-family: var(--body);
-      font-size: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
-      transition: all 120ms ease;
+      transition: all 100ms;
     }
     .btn:hover { background: var(--gray-light); border-color: var(--black); }
-    .btn-yellow { background: var(--black); color: var(--white); border-color: var(--black); }
-    .btn-yellow:hover { background: var(--gray-muted); border-color: var(--gray-muted); }
-    .btn-dark { background: var(--black); color: var(--white); border-color: var(--black); }
-    .btn-dark:hover { background: var(--gray-muted); }
-    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+    .btn-primary:hover { background: #333; border-color: #333; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-arrow::after { content: ' →'; }
 
-    .spec-grid {
-      max-width: 1180px;
-      margin: 52px auto 0;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 0;
-      border: 1px solid var(--gray-border);
-      background: var(--white);
-    }
-    .spec-card {
-      background: var(--white);
-      padding: 22px;
-      border-right: 1px solid var(--gray-border);
-    }
-    .spec-card:last-child { border-right: 0; }
-    .spec-title {
-      font-family: var(--headline);
-      font-size: 30px;
-      line-height: 0.95;
-      letter-spacing: 0;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      color: var(--black);
-    }
-    .spec-card p, .spec-card li { color: var(--gray-muted); line-height: 1.6; font-weight: 400; }
-    .spec-card ul { margin: 14px 0 0; padding-left: 18px; }
-
-    section { padding: 74px 22px; border-bottom: 1px solid var(--gray-border); }
-    section:nth-of-type(odd) { background: var(--bg); }
-    section:nth-of-type(even) { background: var(--white); }
-    .section-inner { max-width: 1180px; margin: 0 auto; }
-    h2 {
-      font-family: var(--display);
-      margin-top: 16px;
-      font-size: clamp(42px, 6.5vw, 78px);
-      line-height: 0.92;
-      letter-spacing: -1px;
-      text-wrap: balance;
-      color: var(--black);
-    }
-    .section-copy {
-      max-width: 760px;
-      margin: 20px 0 0;
+    .form-note {
+      font-size: 12px;
       color: var(--gray-muted);
-      font-size: 16px;
-      line-height: 1.7;
-      font-weight: 400;
+      line-height: 1.5;
     }
-
-    .quiz-shell {
-      margin-top: 38px;
-      border: var(--line);
-      background: var(--white);
-      display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
-      gap: 0;
-    }
-    .progress-panel {
-      border-right: var(--line);
-      background: var(--warm);
-      padding: 22px;
-    }
-    .progress-panel .headline { font-size: 34px; line-height: .9; letter-spacing: -.02em; }
-    .progress-bar {
-      margin: 22px 0 16px;
-      height: 18px;
-      border: var(--line);
-      background: var(--white);
-      overflow: hidden;
-    }
-    .progress-fill { height: 100%; width: 0%; background: var(--yellow); transition: width 180ms ease; }
-    .progress-meta { color: var(--secondary); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-    .score-preview { margin-top: 26px; display: grid; gap: 0; border: var(--line); background: var(--black); }
-    .score-row {
-      background: var(--white);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px;
-      border-bottom: var(--line);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-    .score-row:last-child { border-bottom: 0; }
-
-    .question-panel { padding: clamp(22px, 4vw, 38px); }
-    .question-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
-    .number { border-radius: var(--radius); min-width: 54px; height: 34px; font-family: var(--headline); font-size: 24px; letter-spacing: 0; }
-    .question h3 { font-size: clamp(34px, 5vw, 58px); line-height: .9; letter-spacing: -.025em; max-width: 760px; }
-    .options {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0;
-      border: var(--line);
-      background: var(--black);
-      margin-top: 28px;
-    }
-    .option {
-      position: relative;
-      background: var(--white);
-      padding: 18px 18px 18px 54px;
-      min-height: 94px;
-      border-right: var(--line);
-      border-bottom: var(--line);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      color: var(--secondary);
-      font-weight: 600;
-      line-height: 1.45;
-    }
-    .option:nth-child(2n) { border-right: 0; }
-    .option:nth-last-child(-n+2) { border-bottom: 0; }
-    .option:hover, .option.selected { background: var(--yellow); color: var(--black); }
-    .option input { position: absolute; opacity: 0; pointer-events: none; }
-    .option-letter {
-      position: absolute;
-      left: 16px;
-      top: 16px;
-      width: 25px;
-      height: 25px;
-      border: var(--line);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--black);
-      background: var(--white);
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .option.selected .option-letter { background: var(--black); color: var(--white); }
-    .quiz-controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; }
-
-    .results { display: none; margin-top: 38px; }
-    .results.show { display: block; }
-    .result-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: var(--line);
-      background: var(--black);
-      margin-top: 24px;
-    }
-    .result-card {
-      background: var(--white);
-      padding: 24px;
-      border-right: var(--line);
-      border-bottom: var(--line);
-    }
-    .result-card:nth-child(2n) { border-right: 0; }
-    .result-card h3 { font-size: 42px; line-height: .9; letter-spacing: -.025em; margin-top: 14px; }
-    .result-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
-    .result-card ul { color: var(--secondary); line-height: 1.65; font-weight: 500; padding-left: 18px; }
-    .primary-result { background: var(--yellow); grid-column: 1 / -1; }
-    .primary-result p, .primary-result ul { color: var(--black); }
-    .result-rank { border-radius: var(--radius); }
-    .score-meter { height: 16px; border: var(--line); background: var(--white); margin: 18px 0 10px; }
-    .score-meter span { display: block; height: 100%; width: 0%; background: var(--black); }
-    .primary-result .score-meter span { background: var(--white); }
-    .recommendation {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-      border: var(--line);
-      background: var(--black);
-      margin-top: 24px;
-    }
-    .rec-card { background: var(--white); padding: 22px; border-right: var(--line); }
-    .rec-card:last-child { border-right: 0; }
-    .rec-card h3 { font-size: 30px; line-height: .95; margin: 10px 0; }
-    .rec-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
-
-    .agent-library {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-      border: var(--line);
-      background: var(--black);
-      margin-top: 36px;
-    }
-    .agent-card { background: var(--white); padding: 22px; border-right: var(--line); border-bottom: var(--line); }
-    .agent-card:nth-child(3n) { border-right: 0; }
-    .agent-card h3 { font-size: 32px; line-height: .9; margin: 12px 0 10px; }
-    .agent-card p { color: var(--secondary); line-height: 1.6; font-weight: 500; }
-
-    .footer { background: var(--black); color: var(--white); padding: 28px 22px; }
-    .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-
-
-    .cta-panel {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0;
-      border: 1px solid var(--gray-border);
-      background: var(--white);
-    }
-    .cta-copy, .cta-action {
-      background: var(--bg);
-      padding: 22px;
-    }
-    .cta-copy { border-right: 1px solid var(--gray-border); }
-    .cta-copy strong {
-      display: block;
-      font-family: var(--display);
-      font-size: clamp(36px, 5vw, 58px);
-      line-height: 0.92;
-      letter-spacing: -1px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      color: var(--black);
-    }
-    .cta-copy span { color: var(--gray-muted); font-weight: 400; line-height: 1.6; }
-    .cta-action { display: flex; align-items: center; justify-content: center; min-width: 260px; }
-    .mini-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-    .mini-proof span {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--gray-border);
-      background: var(--white);
-      padding: 7px 10px;
+    .form-status {
+      flex-basis: 100%;
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       color: var(--gray-muted);
+      padding-top: 4px;
     }
-
-    @media (max-width: 960px) {
-      .nav-links { display: none; }
-      .spec-grid, .quiz-shell, .result-grid, .recommendation, .agent-library, .cta-panel { grid-template-columns: 1fr; }
-      .spec-card, .progress-panel, .result-card, .rec-card, .agent-card, .cta-copy { border-right: 0; border-bottom: 1px solid var(--gray-border); }
-      .spec-card:last-child, .rec-card:last-child, .agent-card:last-child { border-bottom: 0; }
-      .options { grid-template-columns: 1fr; }
-      .option { border-right: 0; }
-      .option:nth-last-child(-n+2) { border-bottom: 1px solid var(--gray-border); }
-      .option:last-child { border-bottom: 0; }
-      .result-card:nth-child(2n), .agent-card:nth-child(3n) { border-right: 0; }
-      h1 { font-size: clamp(54px, 18vw, 88px); }
-      section { padding: 58px 20px; }
-    }
-
-    .simple-contact {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 0;
-      border: 1px solid var(--gray-border);
-      background: var(--white);
-      margin-top: 42px;
-    }
-    .contact-note, .contact-form-panel { background: var(--white); padding: clamp(22px, 4vw, 38px); }
-    .contact-note { background: var(--bg); border-right: 1px solid var(--gray-border); }
-    .contact-note h2, .contact-form-panel h2 { font-family: var(--display); font-size: clamp(42px, 6vw, 72px); line-height: 0.92; letter-spacing: -1px; color: var(--black); }
-    .contact-note p, .contact-form-panel p { color: var(--gray-muted); line-height: 1.65; font-weight: 400; }
-    .contact-note p { color: var(--gray-muted); }
-    .simple-form { display: grid; gap: 0; border: 1px solid var(--gray-border); background: var(--white); margin-top: 24px; }
-    .field { background: var(--white); padding: 14px; border-bottom: 1px solid var(--gray-border); }
-    .field:last-child { border-bottom: 0; }
-    .field label { display: block; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 9px; color: var(--gray-muted); }
-    .field input, .field select, .field textarea { width: 100%; border: 1px solid var(--gray-border); border-radius: var(--radius); background: var(--bg); color: var(--black); padding: 12px; font-size: 14px; font-weight: 400; outline: none; transition: background-color 120ms ease, border-color 120ms ease; }
-    .field textarea { min-height: 140px; resize: vertical; }
-    .field input:focus, .field select:focus, .field textarea:focus { background: var(--white); border-color: var(--black); outline: none; }
-    .form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; align-items: center; }
-    .form-note { color: var(--gray-muted); font-size: 13px; font-weight: 400; line-height: 1.5; max-width: 560px; }
-    .form-status { flex-basis: 100%; color: var(--gray-muted); font-size: 13px; font-weight: 600; line-height: 1.5; }
     .form-status.error { color: var(--status-critical); }
     .form-status.success { color: var(--status-healthy); }
-    @media (max-width: 960px) { .simple-contact { grid-template-columns: 1fr; } .contact-note { border-right: 0; border-bottom: 1px solid var(--gray-border); } }
 
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--black);
+      color: var(--white);
+      border-top: var(--line);
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: stretch;
+      border-left: 1px solid #222;
+      border-right: 1px solid #222;
+    }
+    .footer-left {
+      padding: 28px 0;
+      border-right: 1px solid #222;
+      padding-right: 32px;
+    }
+    .footer-brand {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .footer-tagline {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+    .footer-right {
+      padding: 28px 0 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+      transition: color 100ms;
+    }
+    .footer-link:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-inner, .content-wrap { padding-left: 32px; padding-right: 32px; }
+      .hero-inner { padding-left: 32px; padding-right: 32px; grid-template-columns: 1fr 320px; }
+      .footer-inner { padding-left: 32px; padding-right: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+      .hero-left { border-right: 0; border-bottom: var(--line); padding: 0 0 36px; }
+      .hero-right { padding: 0; min-height: 200px; }
+      .nav-inner, .content-wrap { padding-left: 24px; padding-right: 24px; }
+      .footer-inner { padding-left: 24px; padding-right: 24px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-info { border-right: 0; border-bottom: var(--line); }
+      .form-row { grid-template-columns: 1fr; }
+      .form-row .field { border-right: 0; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-card { border-right: 0; border-bottom: var(--line); }
+      .process-card:last-child { border-bottom: 0; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-left { border-right: 0; border-bottom: 1px solid #222; padding-right: 0; }
+      .footer-right { padding-left: 0; flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html#top"><span class="logo">CF</span><span>Construct Flows</span></a>
+      <a class="brand" href="index.html">
+        <span class="logo-mark">CF</span>
+        <span>Constructionflows</span>
+      </a>
       <div class="nav-links">
-        <a href="index.html#assessment">Take assessment</a>
-        <a href="index.html#results">Results</a>
-        <a href="contact.html">Contact us</a>
+        <a href="index.html#assessment">Take Assessment</a>
+        <a href="index.html#agents">Agent Library</a>
+        <a href="contact.html" class="active">Contact</a>
       </div>
     </div>
   </nav>
 
-  <main id="top">
+  <main>
+
+    <!-- HERO -->
     <header class="hero">
+      <div class="hero-blueprint"></div>
       <div class="hero-inner">
-        <div class="badge">Workflow review request</div>
-        <h1>Want help finding the workflow to fix first?</h1>
-        <p class="hero-copy">Send the basics. We’ll look at your workflow pain and point you toward the simplest process to clean up first.</p>
-      </div>
-    </header>
-
-    <section>
-      <div class="section-inner">
-        <div class="section-kicker">Contact us</div>
-        <h2>Keep it simple.</h2>
-        <p class="section-copy">No long intake packet. Just tell us who you are, what hurts, and which workflow you’re trying to clean up.</p>
-
-        <div class="simple-contact">
-          <aside class="contact-note">
-            <span class="number">01</span>
-            <h2>What to send</h2>
-            <p>One painful workflow is enough: missed bid follow-up, weak change order backup, PM overload, daily reports, billing, or document chaos.</p>
-            <p><strong>Email:</strong> <a href="mailto:hello@constructionflows.com">hello@constructionflows.com</a></p>
-          </aside>
-
-          <div class="contact-form-panel">
-            <span class="number">02</span>
-            <h2>Lead form</h2>
-            <p>Submissions go to <strong>hello@constructionflows.com</strong>.</p>
-
-            <form class="simple-form" id="leadForm">
-              <input type="hidden" name="source" value="Construct Flows simplified contact page" />
-
-              <div class="field">
-                <label for="name">Name *</label>
-                <input id="name" name="name" type="text" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="email">Email *</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
-              </div>
-              <div class="field">
-                <label for="company">Company</label>
-                <input id="company" name="company" type="text" autocomplete="organization" />
-              </div>
-              <div class="field">
-                <label for="agent_interest">Workflow interest</label>
-                <select id="agent_interest" name="agent_interest">
-                  <option value="">Not sure yet</option>
-                  <option>Lead source visibility</option>
-                  <option>Estimating / proposal workflow</option>
-                  <option>Accountability and ownership</option>
-                  <option>Forecasting and revenue visibility</option>
-                  <option>Communication and decision tracking</option>
-                  <option>Sales-to-operations handoff</option>
-                  <option>Process standardization</option>
-                  <option>Customer experience friction</option>
-                  <option>Billing / invoice follow-up</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="message">What do you want to fix first? *</label>
-                <textarea id="message" name="message" required placeholder="Example: We lose change order backup in texts and emails, then scramble when billing."></textarea>
-              </div>
-              <div class="field">
-                <label for="quiz_result">Assessment result</label>
-                <input id="quiz_result" name="quiz_result" type="text" placeholder="Optional — fills automatically after the assessment" />
-              </div>
-            </form>
-
-            <div class="form-actions">
-              <button class="btn btn-yellow" type="button" id="submitProxy">Send request</button>
-              <a class="btn" href="mailto:hello@constructionflows.com?subject=Construct Flows%20workflow%20review">Email instead</a>
-              <div class="form-note">Requests are sent through Resend directly to hello@constructionflows.com.</div>
-              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        <div class="hero-left">
+          <div class="label">
+            <span class="label-dot"></span>
+            Workflow Review Request
+          </div>
+          <h1>The right workflow to fix first.</h1>
+          <p class="hero-sub">
+            Most contractors don't have an AI problem. They have a workflow visibility problem. Send us the basics — we'll point you toward the simplest process to clean up first.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">No pitch calls</span>
+            <span class="tag">Direct reply</span>
+            <span class="tag">Construction-aware</span>
+            <span class="tag">Free assessment</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="op-card">
+            <div class="op-card-header">
+              <span>Request Status</span>
+              <span>● Active</span>
+            </div>
+            <div class="op-card-row">
+              <span class="op-label">Response Target</span>
+              <span class="op-value">Within 1 business day</span>
+            </div>
+            <div class="op-card-row">
+              <span class="op-label">Review Type</span>
+              <span class="op-value">Workflow Bottleneck Audit</span>
+            </div>
+            <div class="op-card-row">
+              <span class="op-label">Deliverable</span>
+              <span class="op-value healthy">First Agent Recommendation</span>
+            </div>
+            <div class="op-card-row">
+              <span class="op-label">Cost</span>
+              <span class="op-value">No cost</span>
+            </div>
+            <div class="op-card-row">
+              <span class="op-label">Contact</span>
+              <span class="op-value" style="font-size:11px;">hello@constructionflows.com</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </header>
+
+    <!-- CONTENT WRAP -->
+    <div class="content-wrap">
+
+      <!-- PROCESS STRIP — comes first to build trust before the ask -->
+      <section class="process-strip">
+        <div class="section-kicker">What happens next</div>
+        <h2 style="margin-top: 14px;">A clear path forward.</h2>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <span class="process-num">01</span>
+            <div class="process-title">We review your workflow</div>
+            <p class="process-body">We read your submission and map it against common construction workflow failure patterns. No generic advice — construction-specific analysis only.</p>
+            <span class="process-tag">Within 1 business day</span>
+          </div>
+          <div class="process-card">
+            <span class="process-num">02</span>
+            <div class="process-title">We identify the first agent</div>
+            <p class="process-body">We rank your workflow gaps by time-to-value and implementation complexity, then recommend the single first agent your team should actually implement.</p>
+            <span class="process-tag">Specific recommendation</span>
+          </div>
+          <div class="process-card">
+            <span class="process-num">03</span>
+            <div class="process-title">You get a clear path</div>
+            <p class="process-body">A direct email response with the agent recommendation, implementation path, and what success looks like for your specific workflow bottleneck.</p>
+            <span class="process-tag">No pitch — just direction</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT FORM SECTION -->
+      <section class="contact-section">
+        <div class="section-header">
+          <div class="section-kicker">Contact — 01</div>
+          <h2>Keep it simple.</h2>
+          <p class="section-sub">No long intake forms. Tell us who you are, what hurts, and which workflow is slowing you down.</p>
+        </div>
+        <div class="section-rule"></div>
+
+        <div class="contact-grid">
+
+          <!-- INFO PANEL -->
+          <aside class="contact-info">
+            <div class="contact-info-header">
+              <span>What to send</span>
+              <span>Ref: CF-CONTACT</span>
+            </div>
+
+            <span class="info-num">01</span>
+            <div class="info-title">One painful workflow is enough.</div>
+            <p class="info-body">Missed bid follow-up, weak change order backup, PM overload, daily reports, billing, or document chaos. Pick the one that costs you most and tell us about it.</p>
+
+            <div class="info-block">
+              <div class="info-block-header">Common workflow bottlenecks</div>
+              <ul class="workflow-list">
+                <li>Change order backup lost in texts</li>
+                <li>Bid follow-up falling through cracks</li>
+                <li>PM overload on daily coordination</li>
+                <li>Invoice delays and billing friction</li>
+                <li>RFI tracking and document chaos</li>
+                <li>Field-to-office communication gaps</li>
+              </ul>
+            </div>
+
+            <div class="info-block" style="margin-top: 10px;">
+              <div class="info-block-header">Direct email</div>
+              <div class="info-block-body">
+                <a href="mailto:hello@constructionflows.com">hello@constructionflows.com</a>
+              </div>
+            </div>
+          </aside>
+
+          <!-- FORM PANEL -->
+          <div class="form-panel">
+            <div class="form-panel-header">
+              <span>Lead Form — Submit Request</span>
+              <span class="required-note">* Required</span>
+            </div>
+
+            <form class="lead-form" id="leadForm" novalidate>
+              <input type="hidden" name="source" value="CONSTRUCTIONFLOWS contact page" />
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Name *</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Smith" />
+                  <span class="field-focus-line"></span>
+                </div>
+                <div class="field">
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@contractor.com" />
+                  <span class="field-focus-line"></span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="company">Company</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" placeholder="Smith Construction LLC" />
+                  <span class="field-focus-line"></span>
+                </div>
+                <div class="field">
+                  <label for="agent_interest">Workflow Interest</label>
+                  <select id="agent_interest" name="agent_interest">
+                    <option value="">Not sure yet</option>
+                    <option>Lead source visibility</option>
+                    <option>Estimating / proposal workflow</option>
+                    <option>Accountability and ownership</option>
+                    <option>Forecasting and revenue visibility</option>
+                    <option>Communication and decision tracking</option>
+                    <option>Sales-to-operations handoff</option>
+                    <option>Process standardization</option>
+                    <option>Customer experience friction</option>
+                    <option>Billing / invoice follow-up</option>
+                  </select>
+                  <span class="field-focus-line"></span>
+                </div>
+              </div>
+
+              <div class="field full">
+                <label for="message">What do you want to fix first? *</label>
+                <textarea id="message" name="message" required placeholder="Example: We lose change order backup in texts and emails, then scramble when billing. It's costing us on every disputed invoice."></textarea>
+                <span class="field-focus-line"></span>
+              </div>
+
+              <div class="field full" style="border-bottom: 0;">
+                <label for="quiz_result">Assessment Result</label>
+                <input id="quiz_result" name="quiz_result" type="text" placeholder="Optional — auto-fills after completing the assessment" />
+                <span class="field-focus-line"></span>
+              </div>
+            </form>
+
+            <div class="form-actions">
+              <button class="btn btn-primary btn-arrow" type="button" id="submitProxy">Send request</button>
+              <a class="btn" href="mailto:hello@constructionflows.com?subject=Workflow%20Review%20Request">Email directly</a>
+              <p class="form-note">Requests are sent through Resend directly to hello@constructionflows.com. No spam.</p>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
   </main>
 
-  <footer class="footer"><div class="footer-inner"><span>© Construct Flows</span><span>Better workflows. Fewer loose ends.</span></div></footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">Constructionflows</div>
+        <div class="footer-tagline">Better workflows. Fewer loose ends.</div>
+      </div>
+      <div class="footer-right">
+        <a class="footer-link" href="index.html">Assessment</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+        <a class="footer-link" href="mailto:hello@constructionflows.com">hello@constructionflows.com</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const form = document.getElementById('leadForm');
-    const quizResult = document.getElementById('quiz_result');
-    const submitButton = document.getElementById('submitProxy');
-    const formStatus = document.getElementById('formStatus');
+    const quizInput = document.getElementById('quiz_result');
+    const submitBtn = document.getElementById('submitProxy');
+    const statusEl = document.getElementById('formStatus');
 
     try {
       const primary = localStorage.getItem('constructionflowsAgentFitPrimary');
       const topThree = localStorage.getItem('constructionflowsAgentFitTopThree');
-      if (primary && !quizResult.value) quizResult.value = topThree || primary;
-    } catch (error) {}
+      if (primary && !quizInput.value) quizInput.value = topThree || primary;
+    } catch (e) {}
 
-    function setStatus(message, type = '') {
-      formStatus.textContent = message;
-      formStatus.className = `form-status ${type}`.trim();
+    function setStatus(msg, type = '') {
+      statusEl.textContent = msg;
+      statusEl.className = `form-status ${type}`.trim();
     }
 
-    async function sendLeadRequest() {
+    async function sendRequest() {
       if (!form.reportValidity()) return;
-
-      submitButton.disabled = true;
+      submitBtn.disabled = true;
       setStatus('Sending request…');
-
       try {
         const payload = Object.fromEntries(new FormData(form).entries());
-        const response = await fetch('/api/contact', {
+        const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        const result = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-          throw new Error(result.error || 'Request failed');
-        }
-
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Request failed');
         setStatus('Request sent. Redirecting…', 'success');
         window.location.href = 'thank-you.html';
-      } catch (error) {
-        setStatus('Sorry, the request could not be sent. Please use “Email instead” or try again in a moment.', 'error');
-        submitButton.disabled = false;
+      } catch (err) {
+        setStatus('Request could not be sent. Use "Email directly" or try again.', 'error');
+        submitBtn.disabled = false;
       }
     }
 
-    submitButton.addEventListener('click', sendLeadRequest);
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      sendLeadRequest();
-    });
+    submitBtn.addEventListener('click', sendRequest);
+    form.addEventListener('submit', e => { e.preventDefault(); sendRequest(); });
   </script>
 </body>
 </html>
